@@ -60,8 +60,6 @@ class AdminController extends Controller
         );
 
         return redirect()->back()->with($notification);
-
-        return view('admin.admin_profile_view', compact('adminData'));
     } // End Method
 
     public function AdminChangePassword(){
