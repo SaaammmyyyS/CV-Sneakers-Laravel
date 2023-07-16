@@ -24,26 +24,35 @@
 	<link rel="stylesheet" href="{{asset('adminbackend/assets/css/semi-dark.css')}}" />
 	<link rel="stylesheet" href="{{asset('adminbackend/assets/css/header-colors.css')}}" />
 	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" >
+
+	<!-- Data Table CSS -->
+	<link href="{{ asset('adminbackend/assets/plugins/datatable/css/dataTables.bootstrap5.min.css') }}" rel="stylesheet" />
+
 	<title>Rukada - Responsive Bootstrap 5 Admin Template</title>
 </head>
 
 <body>
 	<!--wrapper-->
 	<div class="wrapper">
+
 		<!--sidebar wrapper -->
 		@include('admin.body.sidebar')
 		<!--end sidebar wrapper -->
+
 		<!--start header -->
 		@include('admin.body.header')
 		<!--end header -->
+
 		<!--start page wrapper -->
 		<div class="page-wrapper">
 			@yield('admin')
 		</div>
 		<!--end page wrapper -->
+
 		<!--start overlay-->
 		<div class="overlay toggle-icon"></div>
 		<!--end overlay-->
+
 		<!--Start Back To Top Button--> <a href="javaScript:;" class="back-to-top"><i class='bx bxs-up-arrow-alt'></i></a>
 		<!--End Back To Top Button-->
 		@include('admin.body.footer')
@@ -65,12 +74,28 @@
 	<script src="{{asset('adminbackend/assets/plugins/sparkline-charts/jquery.sparkline.min.js')}}"></script>
 	<script src="{{asset('adminbackend/assets/plugins/jquery-knob/excanvas.js')}}"></script>
 	<script src="{{asset('adminbackend/assets/plugins/jquery-knob/jquery.knob.js')}}"></script>
+
+	{{-- ========================= Add Sweetalert ======================= --}}
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+	<script src="{{ asset('adminbackend/assets/js/code.js') }}"></script>
+
+
 	  <script>
 		  $(function() {
 			  $(".knob").knob();
 		  });
 	  </script>
 	  <script src="{{asset('adminbackend/assets/js/index.js')}}"></script>
+	  <script src="{{asset('adminbackend/assets/js/validate.min.js')}}"></script>
+
+
+	  <script src="{{asset('adminbackend/assets/plugins/datatable/js/jquery.dataTables.min.js')}}"></script>
+	<script>
+		$(document).ready(function() {
+			$('#example').DataTable();
+		  } );
+	</script>
+
 	<!--app JS-->
 	<script src="{{asset('adminbackend/assets/js/app.js')}}"></script>
 
