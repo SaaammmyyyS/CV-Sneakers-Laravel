@@ -116,12 +116,16 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('/active/vendor/details/{id}', 'ActiveVendorDetails')->name('active.vendor.details');
         Route::post('/inactive/vendor/approve', 'InActiveVendorApprove')->name('inactive.vendor.approve');
 
+    });
+
     // Product All Routes
     Route::controller(ProductController::class)->group(function(){
         Route::get('/all/product', 'AllProduct')->name('all.product');
         Route::get('/add/product', 'AddProduct')->name('add.product');
         Route::post('/store/product', 'StoreProduct')->name('store.product');
-    });
-
+        Route::get('/edit/product/{id}', 'EditProduct')->name('edit.product');
+        Route::post('/update/product', 'UpdateProduct')->name('update.product');
+        Route::post('/update/product/thumbnail', 'UpdateProductThumbnail')->name('update.product.thumbnail');
+        Route::post('/update/product/multiimage', 'UpdateProductMultiimage')->name('update.product.multiimage');
     });
 });
