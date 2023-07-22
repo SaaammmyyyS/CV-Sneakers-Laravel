@@ -185,4 +185,60 @@ class ProductController extends Controller
 
         return redirect()->back()->with($notification);
     } // End Method
+
+    public function MultiImageDelete($id){
+        $oldImg = MultiImage::findOrFail($id);
+        unlink($oldImg->photo_name);
+        MultiImage::findOrFail($id)->delete();
+
+        $notification = array(
+            'message' => 'Product Multi Image Deleted Successfully',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->back()->with($notification);
+
+    } // End Method
+
+    public function ProductInactive($id){
+        Product::findOrFail($id)->update(['status' => 0]);
+
+        $notification = array(
+            'message' => 'Product Inactive',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->back()->with($notification);
+    } // End Method
+
+    public function ProductActive($id){
+        Product::findOrFail($id)->update(['status' => 1]);
+
+        $notification = array(
+            'message' => 'Product Active',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->back()->with($notification);
+    } // End Method
+
+    public function DeleteProduct($id){
+        $product = Product::findOrFail($id);
+        unlink($product->product_thumbnail);
+
+        Product::findOrFail($id)->delete();
+
+        $imgs = MultiImage::where('product_id', $id)->get();
+        foreach ($imgs as $img) {
+            unlink($img->photo_name);
+            MultiImage::where('product_id', $id)->delete();
+        }
+
+        $notification = array(
+            'message' => 'Product Deleted Successfully',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->back()->with($notification);
+    } // End Method
 }

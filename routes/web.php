@@ -9,6 +9,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VendorController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Middleware\RedirectIfAuthenticated;
 
 /*
 |--------------------------------------------------------------------------
@@ -66,8 +67,8 @@ Route::middleware(['auth', 'role:vendor'])->group(function () {
 });
 
 // -------------Login Routes-------------
-Route::get('/admin/login', [AdminController::class, 'AdminLogin']);
-Route::get('/vendor/login', [VendorController::class, 'VendorLogin'])->name('vendor.login');
+Route::get('/admin/login', [AdminController::class, 'AdminLogin'])->middleware(RedirectIfAuthenticated::class);
+Route::get('/vendor/login', [VendorController::class, 'VendorLogin'])->name('vendor.login')->middleware(RedirectIfAuthenticated::class);
 Route::get('/become/vendor', [VendorController::class, 'BecomeVendor'])->name('become.vendor');
 Route::post('/vendor/register', [VendorController::class, 'VendorRegister'])->name('vendor.register');
 // -------------Login Routes-------------
@@ -127,5 +128,9 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::post('/update/product', 'UpdateProduct')->name('update.product');
         Route::post('/update/product/thumbnail', 'UpdateProductThumbnail')->name('update.product.thumbnail');
         Route::post('/update/product/multiimage', 'UpdateProductMultiimage')->name('update.product.multiimage');
+        Route::get('/product/multiimg/delete/{id}', 'MultiImageDelete')->name('product.multiimg.delete');
+        Route::get('/product/inactive/{id}', 'ProductInactive')->name('product.inactive');
+        Route::get('/product/active/{id}', 'ProductActive')->name('product.active');
+        Route::get('/delete/product/{id}', 'DeleteProduct')->name('delete.product');
     });
 });
