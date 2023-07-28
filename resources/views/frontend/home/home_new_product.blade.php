@@ -92,8 +92,8 @@
                                     </div>
                                     @else
                                     <div class="product-price">
-                                        <span>₱{{$product->selling_price}}</span>
-                                        <span class="old-price">₱{{$product->discount_price}}</span>
+                                        <span>₱{{$product->discount_price}}</span>
+                                        <span class="old-price">₱{{$product->selling_price}}</span>
                                     </div>
 
                                     @endif
