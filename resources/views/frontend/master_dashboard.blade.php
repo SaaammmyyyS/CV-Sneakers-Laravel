@@ -94,12 +94,13 @@
     <!-- Template  JS -->
     <script src="{{asset('frontend/assets/js/main.js?v=5.3')}}"></script>
     <script src="{{asset('frontend/assets/js/shop.js?v=5.3')}}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 
     <script type="text/javascript">
         $.ajaxSetup({
             headers:{
-                'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('centent')
+                'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')
             }
         })
 
@@ -118,6 +119,9 @@
                     $('#pcategory').text(data.product.category.category_name);
                     $('#pbrand').text(data.product.brand.brand_name);
                     $('#pimage').attr('src','/'+data.product.product_thumbnail );
+
+                    $('#product_id').val(id);
+                    $('#qty').val(1);
 
 
                     // Product Price
@@ -176,10 +180,82 @@
 
                 }
             })
+        } // End Product View
+
+        // Start Add to Cart Product
+
+
+        function addToCart(){
+            var product_name = $('#pname').text();
+            var id = $('#product_id').val();
+            var color = $('#color option:selected').text();
+            var size = $('#size option:selected').text();
+            var quantity = $('#qty').val();
+
+
+            $.ajax({
+                type: "POST",
+                dataType: 'json',
+                data: {
+                    color: color,
+                    size: size,
+                    quantity: quantity,
+                    product_name: product_name,
+                },
+                url: "/cart/data/store/"+id,
+                success:function(data){
+                    $('#closeModal').click();
+                    // console.log(data)
+
+                    // Start Message
+
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+                        icon: 'success',
+                        showConfirmButton: false,
+                        timer: 3000
+                    })
+                    if ($.isEmptyObject(data.error)) {
+
+                        Toast.fire({
+                            type: 'success',
+                            title: data.success,
+                        })
+
+                    }
+                    else{
+
+                        Toast.fire({
+                            type: 'error',
+                            title: data.error,
+                        })
+                    }
+
+                    // End Message
+                }
+            })
         }
+
+        // End Start Add to Cart Product
+
     </script>
 
     {{-- Start product view with Modal --}}
+
+
+    <script type="text/javascript">
+        function miniCart(){
+            $.ajax({
+                type: 'GET',
+                url: '/product/mini/cart',
+                dataType: 'json',
+                success:function(response){
+                    console.log(response);
+                }
+            })
+        }
+    </script>
 
 
 
