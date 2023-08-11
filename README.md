@@ -7,60 +7,61 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-## About Laravel
+# Laravel Project Setup Guide
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+This guide will walk you through the steps to set up and run the Laravel project. Follow these steps to get your project up and running smoothly.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Prerequisites
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- Git installed on your system
+- Composer installed on your system
+- Node.js and npm installed on your system
+- MySQL database server
 
-## Learning Laravel
+## Installation
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+1. **Clone the Repository**: Open your terminal and navigate to the directory where you want to store the project. Run the following command to clone the repository and create a new folder for your project:
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+    ```sh
+    git clone {url} {folder_name}
+    ```
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+2. **Create .env File**: Navigate into your project folder and locate the `.env.example` file. Duplicate this file and rename the duplicate to `.env`. Open the `.env` file and modify the `DB_DATABASE` setting to match your local database configuration.
 
-## Laravel Sponsors
+3. **Generate Application Key**: In the terminal, while still in your project folder, run the following command to generate a new application key:
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+    ```sh
+    php artisan key:generate
+    ```
 
-### Premium Partners
+4. **Run Migrations**: Run the following command to migrate your database:
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+    ```sh
+    php artisan migrate
+    ```
 
-## Contributing
+5. **Import Database**: Import the `cv-sneaker.sql` file into your local MySQL database.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+6. **Install Node.js Dependencies**: Run the following command to install the required Node.js packages:
 
-## Code of Conduct
+    ```sh
+    npm install
+    ```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+7. **Run Development Server**: Start the development server and compile assets by running the following commands:
 
-## Security Vulnerabilities
+    ```sh
+    php artisan serve
+    npm run dev
+    ```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+    This will start the Laravel development server and compile your frontend assets using npm.
 
-## License
+8. **Access Your Application**: Open your web browser and navigate to `http://localhost:8000` to access your Laravel application.
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## Additional Notes
+
+- If you encounter any issues during the setup process, make sure to check the Laravel documentation and your system's requirements.
+- Make sure your MySQL server is running and properly configured with the credentials you specified in your `.env` file.
+
+That's it! Your Laravel project should now be set up and ready to use.
