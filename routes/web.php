@@ -11,6 +11,7 @@ use App\Http\Controllers\Backend\VendorProductController;
 use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\IndexController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\User\CompareController;
 use App\Http\Controllers\User\WishlistController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VendorController;
@@ -210,6 +211,10 @@ Route::post('/dcart/data/store/{id}', [CartController::class, 'AddToCartDetails'
 // Add to Wishlist
 Route::post('/add-to-wishlist/{product_id}', [WishlistController::class, 'AddToWishList']);
 
+// Add to Compare
+Route::post('/add-to-compare/{product_id}', [CompareController::class, 'AddToCompare']);
+
+
 
 /// Vendor Dashboard
 Route::middleware(['auth', 'role:user'])->group(function () {
@@ -220,6 +225,13 @@ Route::middleware(['auth', 'role:user'])->group(function () {
         Route::get('/get-wishlist-product', 'GetWishlistProduct');
         Route::get('/wishlist-remove/{id}', 'WishlistRemove');
 
+    });
+
+    // Compare All Route
+    Route::controller(CompareController::class)->group(function(){
+        Route::get('/compare', 'Allcompare')->name('compare');
+        Route::get('/get-compare-product', 'GetCompareProduct');
+        Route::get('/compare-remove/{id}', 'CompareRemove');
     });
 
 }); // End Group Middleware

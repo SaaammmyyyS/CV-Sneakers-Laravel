@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 11, 2023 at 01:19 PM
+-- Generation Time: Aug 12, 2023 at 09:14 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -97,6 +97,27 @@ INSERT INTO `categories` (`id`, `category_name`, `category_slug`, `category_imag
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `compares`
+--
+
+CREATE TABLE `compares` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `user_id` bigint(20) UNSIGNED NOT NULL,
+  `product_id` bigint(20) UNSIGNED NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `compares`
+--
+
+INSERT INTO `compares` (`id`, `user_id`, `product_id`, `created_at`, `updated_at`) VALUES
+(5, 3, 9, '2023-08-11 22:02:37', NULL);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `failed_jobs`
 --
 
@@ -138,7 +159,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (13, '2023_07_19_012546_create_multi_images_table', 5),
 (14, '2023_07_24_133839_create_sliders_table', 6),
 (15, '2023_07_25_140025_create_banners_table', 7),
-(16, '2023_08_11_045421_create_wishlists_table', 8);
+(16, '2023_08_11_045421_create_wishlists_table', 8),
+(17, '2023_08_12_013923_create_compares_table', 9);
 
 -- --------------------------------------------------------
 
@@ -379,15 +401,9 @@ CREATE TABLE `wishlists` (
 --
 
 INSERT INTO `wishlists` (`id`, `user_id`, `product_id`, `created_at`, `updated_at`) VALUES
-(2, 3, 1, '2023-08-11 00:54:06', NULL),
-(4, 3, 7, '2023-08-11 01:40:28', NULL),
-(5, 3, 3, '2023-08-11 01:41:04', NULL),
-(6, 3, 8, '2023-08-11 01:41:15', NULL),
-(7, 3, 11, '2023-08-11 01:43:42', NULL),
-(8, 3, 10, '2023-08-11 01:43:57', NULL),
-(9, 3, 2, '2023-08-11 01:44:19', NULL),
 (10, 18, 6, '2023-08-11 03:06:50', NULL),
-(11, 18, 7, '2023-08-11 03:06:55', NULL);
+(11, 18, 7, '2023-08-11 03:06:55', NULL),
+(17, 3, 1, '2023-08-11 21:52:31', NULL);
 
 --
 -- Indexes for dumped tables
@@ -409,6 +425,12 @@ ALTER TABLE `brands`
 -- Indexes for table `categories`
 --
 ALTER TABLE `categories`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `compares`
+--
+ALTER TABLE `compares`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -498,6 +520,12 @@ ALTER TABLE `categories`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
+-- AUTO_INCREMENT for table `compares`
+--
+ALTER TABLE `compares`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
 -- AUTO_INCREMENT for table `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
@@ -507,7 +535,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `multi_images`
@@ -549,7 +577,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `wishlists`
 --
 ALTER TABLE `wishlists`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
