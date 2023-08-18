@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 12, 2023 at 09:14 AM
+-- Generation Time: Aug 18, 2023 at 10:19 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -108,13 +108,6 @@ CREATE TABLE `compares` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data for table `compares`
---
-
-INSERT INTO `compares` (`id`, `user_id`, `product_id`, `created_at`, `updated_at`) VALUES
-(5, 3, 9, '2023-08-11 22:02:37', NULL);
-
 -- --------------------------------------------------------
 
 --
@@ -208,7 +201,8 @@ INSERT INTO `multi_images` (`id`, `product_id`, `photo_name`, `created_at`, `upd
 (30, 11, 'upload/products/multi-image/1772730755764950.png', '2023-07-28 21:16:31', NULL),
 (31, 11, 'upload/products/multi-image/1772730755855595.png', '2023-07-28 21:16:31', NULL),
 (32, 11, 'upload/products/multi-image/1772730755951736.png', '2023-07-28 21:16:31', NULL),
-(33, 11, 'upload/products/multi-image/1772730756044931.png', '2023-07-28 21:16:32', NULL);
+(33, 11, 'upload/products/multi-image/1772730756044931.png', '2023-07-28 21:16:32', NULL),
+(34, 12, 'upload/products/multi-image/1774465477814141.jpg', '2023-08-17 00:49:12', NULL);
 
 -- --------------------------------------------------------
 
@@ -287,7 +281,8 @@ INSERT INTO `products` (`id`, `brand_id`, `category_id`, `subcategory_id`, `vend
 (8, 2, 3, 11, NULL, 'appliance testing', 'appliance-testing', '231', '1', 'new product, top product', 'Small, Medium, Large', 'Red, Blue, Black', '123', NULL, 'asdqwdasdwqe', '<p>Hello, World!</p>', 'upload/products/thumbnail/1772669452181808.jpg', NULL, 1, 1, NULL, 1, '2023-07-28 05:02:08', NULL),
 (9, 2, 2, 12, '16', 'Hot Deals testing', 'hot-deals-testing', '1', '1', 'new product, top product', 'Small, Medium, Large', 'Red, Blue, Black', '123', '12', 'asdasd', '<p>Hello, World!</p>', 'upload/products/thumbnail/1772673501968751.png', 1, NULL, NULL, 1, 1, '2023-07-28 06:06:30', NULL),
 (10, 2, 5, 8, '2', 'heyyoooo', 'heyyoooo', '123', '1', 'new product, top product', 'Small, Medium, Large', 'Red, Blue, Black', '1234213', '12', 'asdwqasd', '<p>Hello, World!</p>', 'upload/products/thumbnail/1772730703998558.png', 1, 1, 1, 1, 1, '2023-07-28 21:15:43', NULL),
-(11, 2, 1, 6, '2', 'something shoeeess', 'something-shoeeess', '12313', '0', 'new product, top product', '11,12,13', 'Red, Blue, Black', '12', '2', 'asdwqasdqwdasd', '<p>Hello, World!</p>', 'upload/products/thumbnail/1772730755261322.png', 1, 1, 1, 1, 1, '2023-08-07 03:06:12', '2023-08-07 03:06:12');
+(11, 2, 1, 6, '2', 'something shoeeess', 'something-shoeeess', '12313', '0', 'new product, top product', '11,12,13', 'Red, Blue, Black', '12', '2', 'asdwqasdqwdasd', '<p>Hello, World!</p>', 'upload/products/thumbnail/1772730755261322.png', 1, 1, 1, 1, 1, '2023-08-07 03:06:12', '2023-08-07 03:06:12'),
+(12, 2, 2, 12, NULL, 'Christian Prado', 'christian-prado', '123', '2', 'new product, top product', '11,12', 'Red, Blue, Black', '123', '123', 'kjasdoiansdoinoiqwe', '<p>Hello, World!</p>', 'upload/products/thumbnail/1774465476352460.jpg', 1, NULL, NULL, NULL, 1, '2023-08-17 00:49:11', NULL);
 
 -- --------------------------------------------------------
 
@@ -375,7 +370,7 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `name`, `username`, `email`, `email_verified_at`, `password`, `photo`, `phone`, `address`, `vendor_join`, `vendor_short_info`, `role`, `status`, `remember_token`, `created_at`, `updated_at`) VALUES
 (1, 'Admin', 'admin', 'admin@gmail.com', NULL, '$2y$10$9TWAk7kJy9mIMiPOnPJQwuJwqMKEUvgvN5DjDOLz8EDsCSYyDVTji', NULL, NULL, NULL, NULL, NULL, 'admin', 'active', NULL, NULL, '2023-07-12 18:23:29'),
-(2, 'Nest Food.,Ltd', 'vendor', 'vendor@gmail.com', NULL, '$2y$10$PyOzt65.aX4LMLGUvz/5k.tV4C9SHFV3XZsOYPL2yIHR7ZV94hTLG', '202307130242vendor-15.png', '540-025-124553', '5171 W Campbell Ave undefined, Utah 53127 United States', '2023', 'Got a smooth, buttery spread in your fridge? Chances are good that it\'s Good Chef. This brand made Lionto\'s list of the most popular grocery brands across the country.', 'vendor', 'inactive', NULL, NULL, '2023-08-09 19:00:56'),
+(2, 'Nest Food.,Ltd', 'vendor', 'vendor@gmail.com', NULL, '$2y$10$PyOzt65.aX4LMLGUvz/5k.tV4C9SHFV3XZsOYPL2yIHR7ZV94hTLG', '202307130242vendor-15.png', '540-025-124553', '5171 W Campbell Ave undefined, Utah 53127 United States', '2023', 'Got a smooth, buttery spread in your fridge? Chances are good that it\'s Good Chef. This brand made Lionto\'s list of the most popular grocery brands across the country.', 'vendor', 'active', NULL, NULL, '2023-08-17 17:43:35'),
 (3, 'User', 'user', 'user@gmail.com', NULL, '$2y$10$6LuePCajUVQ/KqNz761s/.X29FfsE.fy80EEgD3Hr1p4MmLGwVW5e', '202307150419cat-3.png', '09268827283', NULL, NULL, NULL, 'user', 'active', NULL, NULL, '2023-08-10 21:27:48'),
 (15, 'Walton', 'walton', 'walton@gmail.com', NULL, '$2y$10$taOSnwF2xvEOOU4m0jgU3OAhUomxZAqWyFPPDu0asbK53AiZXNAYi', NULL, '0926882', NULL, '2022', NULL, 'vendor', 'active', NULL, NULL, '2023-08-07 01:25:38'),
 (16, 'Sonny', 'sonny', 'sonny@gmail.com', NULL, '$2y$10$8ssYS3a5wuSRWDiiiFIkXOsU0NSTCXowdV4FFnOOIirq72YuGs0iG', NULL, '092648', NULL, '2022', NULL, 'vendor', 'active', NULL, NULL, '2023-07-18 02:23:47'),
@@ -403,7 +398,9 @@ CREATE TABLE `wishlists` (
 INSERT INTO `wishlists` (`id`, `user_id`, `product_id`, `created_at`, `updated_at`) VALUES
 (10, 18, 6, '2023-08-11 03:06:50', NULL),
 (11, 18, 7, '2023-08-11 03:06:55', NULL),
-(17, 3, 1, '2023-08-11 21:52:31', NULL);
+(18, 2, 3, '2023-08-17 17:47:55', NULL),
+(19, 2, 2, '2023-08-17 17:47:56', NULL),
+(20, 2, 6, '2023-08-17 17:49:20', NULL);
 
 --
 -- Indexes for dumped tables
@@ -517,7 +514,7 @@ ALTER TABLE `brands`
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `compares`
@@ -541,7 +538,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `multi_images`
 --
 ALTER TABLE `multi_images`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -553,7 +550,7 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `sliders`
@@ -577,7 +574,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `wishlists`
 --
 ALTER TABLE `wishlists`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
