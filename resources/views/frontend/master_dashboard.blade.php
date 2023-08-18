@@ -62,15 +62,9 @@
 
 
     <!-- Preloader Start -->
-    <div id="preloader-active">
-        <div class="preloader d-flex align-items-center justify-content-center">
-            <div class="preloader-inner position-relative">
-                <div class="text-center">
-                    <img src="{{asset('frontend/assets/imgs/theme/loading.gif')}}" alt="" />
-                </div>
-            </div>
-        </div>
-    </div>
+   @include('frontend.body.preloader')
+   <!-- Preloader Start -->
+
     <!-- Vendor JS-->
     <script src="{{asset('frontend/assets/js/vendor/modernizr-3.6.0.min.js')}}"></script>
     <script src="{{asset('frontend/assets/js/vendor/jquery-3.6.0.min.js')}}"></script>
@@ -347,6 +341,7 @@
                 dataType:'json',
                 success:function(data){
                 miniCart();
+                cart();
                     // Start Message
 
                     const Toast = Swal.mixin({
@@ -695,6 +690,146 @@
     }
 
     // Compare Remove Start
+    </script>
+
+
+    <script type="text/javascript">
+        // Start Load My Cart
+
+        function cart(){
+            $.ajax({
+                type: 'GET',
+                url: '/get-cart-product',
+                dataType: 'json',
+                success:function(response){
+                    // console.log(response);
+
+                    var rows = ''
+
+                    var miniCart = ""
+                    $.each(response.carts, function(key, value){
+                        rows += `<tr class="pt-30">
+                            <td class="custome-checkbox pl-30">
+
+                            </td>
+                            <td class="image product-thumbnail pt-40"><img src="/${value.options.image}" alt="#"></td>
+                            <td class="product-des product-name">
+                                <h6 class="mb-5"><a class="product-name mb-10 text-heading" href="shop-product-right.html">${value.name}</a></h6>
+                            </td>
+                            <td class="price" data-title="Price">
+                                <h6 class="text-body">$${value.price}</h6>
+                            </td>
+                            <td class="price" data-title="Price">
+                                ${value.options.color == null
+                                    ? `<span>....</span>`
+                                    : `<h6 class="text-body">${value.options.color}</h6>`
+                                }
+                            </td>
+                            <td class="price" data-title="Price">
+                                ${value.options.size == null
+                                    ? `<span>....</span>`
+                                    : `<h6 class="text-body">${value.options.size}</h6>`
+                                }
+                            </td>
+                            <td class="text-center detail-info" data-title="Stock">
+                                <div class="detail-extralink mr-15">
+                                    <div class="detail-qty border radius">
+                                        <a type="submit" class="qty-down" id="${value.rowId}" onclick="cartDecrement(this.id)"><i class="fi-rs-angle-small-down"></i></a>
+                                        <input type="text" name="quantity" class="qty-val" value="${value.qty}" min="1">
+                                        <a type="submit" class="qty-up" id="${value.rowId}" onclick="cartIncrement(this.id)"><i class="fi-rs-angle-small-up"></i></a>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="price" data-title="Price">
+                                <h6 class="text-brand">$${value.subtotal} </h6>
+                            </td>
+                            <td class="action text-center" data-title="Remove"><a type="submit" id="${value.rowId}" onclick="cartRemove(this.id)" class="text-body"><i class="fi-rs-trash"></i></a></td>
+                        </tr>`
+                    });
+
+                    $('#cartPage').html(rows);
+                }
+            })
+        }
+        cart();
+
+        // Cart Remove Start
+        function cartRemove(id){
+            $.ajax({
+                type: 'GET',
+                dataType: 'JSON',
+                url: "/cart-remove/"+id,
+
+                success:function(data){
+                    // Start Message
+                    cart();
+                    miniCart();
+
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+
+                        showConfirmButton: false,
+                        timer: 3000
+                    })
+                    if ($.isEmptyObject(data.error)) {
+
+                        Toast.fire({
+                            type: 'success',
+                            icon: 'success',
+                            title: data.success,
+                        })
+
+                    }
+                    else{
+                        Toast.fire({
+                            type: 'error',
+                            icon: 'error',
+                            title: data.error,
+                        })
+                    }
+
+                    // End Message
+                }
+            })
+        }
+        // Cart Remove End
+
+
+        // Cart Decrement Start
+        function cartDecrement(rowId){
+            $.ajax({
+                type: 'GET',
+                url: '/cart-decrement/'+rowId,
+                dataType: 'json',
+                success:function(data){
+                    cart();
+                    miniCart();
+                }
+
+            });
+        }
+        // Cart Decrement End
+
+        // Cart Increment Start
+        function cartIncrement(rowId){
+            $.ajax({
+                type: 'GET',
+                url: '/cart-increment/'+rowId,
+                dataType: 'json',
+                success:function(data){
+                    cart();
+                    miniCart();
+                }
+
+            });
+        }
+        // Cart Increment End
+
+
+
+
+        // End Load My Cart
     </script>
 
 
