@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Backend\BannerController;
 use App\Http\Controllers\Backend\BrandController;
 use App\Http\Controllers\Backend\CategoryController;
+use App\Http\Controllers\Backend\CouponController;
 use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Backend\SubCategoryController;
@@ -101,7 +102,7 @@ Route::post('/vendor/register', [VendorController::class, 'VendorRegister'])->na
 // -------------Login Routes-------------
 
 
-
+// Admin Start Middleware
 Route::middleware(['auth', 'role:admin'])->group(function () {
     // Brand All Routes
     Route::controller(BrandController::class)->group(function(){
@@ -180,7 +181,19 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::post('/update/banner', 'UpdateBanner')->name('update.banner');
         Route::get('/delete/banner/{id}', 'DeleteBanner')->name('delete.banner');
     });
+
+    // Coupon All Routes
+    Route::controller(CouponController::class)->group(function(){
+        Route::get('/all/coupon', 'AllCoupon')->name('all.coupon');
+        Route::get('/add/coupon', 'AddCoupon')->name('add.coupon');
+        Route::post('/store/coupon', 'StoreCoupon')->name('store.coupon');
+        Route::get('/edit/coupon/{id}', 'EditCoupon')->name('edit.coupon');
+        Route::post('/update/coupon', 'UpdateCoupon')->name('update.coupon');
+        Route::get('/delete/coupon/{id}', 'DeleteCoupon')->name('delete.coupon');
+
+    });
 });
+// Admin End Middleware
 
 
 // Frontend Product Details All Route

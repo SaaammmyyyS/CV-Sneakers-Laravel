@@ -57,7 +57,7 @@
         <div class="container">
             <div class="header-wrap">
                 <div class="logo logo-width-1">
-                    <a href="index.html"><img src="{{asset('frontend/assets/imgs/theme/logo.svg')}}" alt="logo" /></a>
+                    <a href="index.html"><img style="width: 100px; height: 100px;" src="{{asset('frontend/assets/imgs/theme/cv_logo.svg')}}" alt="logo" /></a>
                 </div>
                 <div class="header-right">
                     <div class="search-style-2">
