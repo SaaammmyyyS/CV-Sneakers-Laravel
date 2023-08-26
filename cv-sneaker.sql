@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 19, 2023 at 02:43 AM
+-- Generation Time: Aug 26, 2023 at 03:55 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -108,6 +108,14 @@ CREATE TABLE `compares` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `compares`
+--
+
+INSERT INTO `compares` (`id`, `user_id`, `product_id`, `created_at`, `updated_at`) VALUES
+(6, 3, 3, '2023-08-22 14:45:47', NULL),
+(7, 3, 6, '2023-08-22 14:45:49', NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -129,7 +137,8 @@ CREATE TABLE `coupons` (
 --
 
 INSERT INTO `coupons` (`id`, `coupon_name`, `coupon_discount`, `coupon_validity`, `status`, `created_at`, `updated_at`) VALUES
-(2, 'EZSNEAKERS TESTING', 5, '2023-08-30', 1, '2023-08-18 06:56:27', '2023-08-18 06:56:27');
+(2, 'EZSNEAKERS TESTING', 5, '2023-08-30', 1, '2023-08-18 06:56:27', '2023-08-18 06:56:27'),
+(3, 'TESTING COUPON', 90, '2023-08-20', 1, '2023-08-20 16:57:34', NULL);
 
 -- --------------------------------------------------------
 
@@ -177,7 +186,10 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (15, '2023_07_25_140025_create_banners_table', 7),
 (16, '2023_08_11_045421_create_wishlists_table', 8),
 (17, '2023_08_12_013923_create_compares_table', 9),
-(18, '2023_08_18_134244_create_coupons_table', 10);
+(18, '2023_08_18_134244_create_coupons_table', 10),
+(19, '2023_08_19_010901_create_ship_divisions_table', 11),
+(20, '2023_08_19_011032_create_ship_districs_table', 11),
+(21, '2023_08_19_011157_create_ship_states_table', 11);
 
 -- --------------------------------------------------------
 
@@ -306,7 +318,73 @@ INSERT INTO `products` (`id`, `brand_id`, `category_id`, `subcategory_id`, `vend
 (9, 2, 2, 12, '16', 'Hot Deals testing', 'hot-deals-testing', '1', '1', 'new product, top product', 'Small, Medium, Large', 'Red, Blue, Black', '123', '12', 'asdasd', '<p>Hello, World!</p>', 'upload/products/thumbnail/1772673501968751.png', 1, NULL, NULL, 1, 1, '2023-07-28 06:06:30', NULL),
 (10, 2, 5, 8, '2', 'heyyoooo', 'heyyoooo', '123', '1', 'new product, top product', 'Small, Medium, Large', 'Red, Blue, Black', '1234213', '12', 'asdwqasd', '<p>Hello, World!</p>', 'upload/products/thumbnail/1772730703998558.png', 1, 1, 1, 1, 1, '2023-07-28 21:15:43', NULL),
 (11, 2, 1, 6, '2', 'something shoeeess', 'something-shoeeess', '12313', '0', 'new product, top product', '11,12,13', 'Red, Blue, Black', '12', '2', 'asdwqasdqwdasd', '<p>Hello, World!</p>', 'upload/products/thumbnail/1772730755261322.png', 1, 1, 1, 1, 1, '2023-08-07 03:06:12', '2023-08-07 03:06:12'),
-(12, 2, 2, 12, NULL, 'Christian Prado', 'christian-prado', '123', '2', 'new product, top product', '11,12', 'Red, Blue, Black', '123', '123', 'kjasdoiansdoinoiqwe', '<p>Hello, World!</p>', 'upload/products/thumbnail/1774465476352460.jpg', 1, NULL, NULL, NULL, 1, '2023-08-17 00:49:11', NULL);
+(12, 2, 2, 12, NULL, 'Christian Prado', 'christian-prado', '123', '2', 'new product, top product', '11,12', 'Red, Blue, Black', '123', '123', 'kjasdoiansdoinoiqwe', '<p>Hello, World!</p>', 'upload/products/thumbnail/1774465476352460.jpg', 1, NULL, NULL, NULL, 0, '2023-08-17 00:49:11', '2023-08-23 17:40:31');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `ship_districs`
+--
+
+CREATE TABLE `ship_districs` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `division_id` bigint(20) UNSIGNED NOT NULL,
+  `district_name` varchar(255) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `ship_districs`
+--
+
+INSERT INTO `ship_districs` (`id`, `division_id`, `district_name`, `created_at`, `updated_at`) VALUES
+(2, 2, 'testing', NULL, NULL),
+(3, 3, 'Davao del Norte', NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `ship_divisions`
+--
+
+CREATE TABLE `ship_divisions` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `division_name` varchar(255) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `ship_divisions`
+--
+
+INSERT INTO `ship_divisions` (`id`, `division_name`, `created_at`, `updated_at`) VALUES
+(2, 'Division Test', NULL, NULL),
+(3, 'Region 11', NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `ship_states`
+--
+
+CREATE TABLE `ship_states` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `division_id` bigint(20) UNSIGNED NOT NULL,
+  `district_id` bigint(20) UNSIGNED NOT NULL,
+  `state_name` varchar(255) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `ship_states`
+--
+
+INSERT INTO `ship_states` (`id`, `division_id`, `district_id`, `state_name`, `created_at`, `updated_at`) VALUES
+(2, 2, 2, 'okadisfwear', NULL, NULL),
+(4, 3, 3, 'Tagum CIty', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -394,7 +472,7 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `name`, `username`, `email`, `email_verified_at`, `password`, `photo`, `phone`, `address`, `vendor_join`, `vendor_short_info`, `role`, `status`, `remember_token`, `created_at`, `updated_at`) VALUES
 (1, 'Admin', 'admin', 'admin@gmail.com', NULL, '$2y$10$9TWAk7kJy9mIMiPOnPJQwuJwqMKEUvgvN5DjDOLz8EDsCSYyDVTji', NULL, NULL, NULL, NULL, NULL, 'admin', 'active', NULL, NULL, '2023-07-12 18:23:29'),
-(2, 'Nest Food.,Ltd', 'vendor', 'vendor@gmail.com', NULL, '$2y$10$PyOzt65.aX4LMLGUvz/5k.tV4C9SHFV3XZsOYPL2yIHR7ZV94hTLG', '202307130242vendor-15.png', '540-025-124553', '5171 W Campbell Ave undefined, Utah 53127 United States', '2023', 'Got a smooth, buttery spread in your fridge? Chances are good that it\'s Good Chef. This brand made Lionto\'s list of the most popular grocery brands across the country.', 'vendor', 'active', NULL, NULL, '2023-08-17 17:43:35'),
+(2, 'Nest Food.,Ltd', 'vendor', 'vendor@gmail.com', NULL, '$2y$10$PyOzt65.aX4LMLGUvz/5k.tV4C9SHFV3XZsOYPL2yIHR7ZV94hTLG', '202307130242vendor-15.png', '540-025-124553', '5171 W Campbell Ave undefined, Utah 53127 United States', '2023', 'Got a smooth, buttery spread in your fridge? Chances are good that it\'s Good Chef. This brand made Lionto\'s list of the most popular grocery brands across the country.', 'vendor', 'inactive', NULL, NULL, '2023-08-18 16:57:42'),
 (3, 'User', 'user', 'user@gmail.com', NULL, '$2y$10$6LuePCajUVQ/KqNz761s/.X29FfsE.fy80EEgD3Hr1p4MmLGwVW5e', '202307150419cat-3.png', '09268827283', NULL, NULL, NULL, 'user', 'active', NULL, NULL, '2023-08-10 21:27:48'),
 (15, 'Walton', 'walton', 'walton@gmail.com', NULL, '$2y$10$taOSnwF2xvEOOU4m0jgU3OAhUomxZAqWyFPPDu0asbK53AiZXNAYi', NULL, '0926882', NULL, '2022', NULL, 'vendor', 'active', NULL, NULL, '2023-08-07 01:25:38'),
 (16, 'Sonny', 'sonny', 'sonny@gmail.com', NULL, '$2y$10$8ssYS3a5wuSRWDiiiFIkXOsU0NSTCXowdV4FFnOOIirq72YuGs0iG', NULL, '092648', NULL, '2022', NULL, 'vendor', 'active', NULL, NULL, '2023-07-18 02:23:47'),
@@ -500,6 +578,24 @@ ALTER TABLE `products`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `ship_districs`
+--
+ALTER TABLE `ship_districs`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `ship_divisions`
+--
+ALTER TABLE `ship_divisions`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `ship_states`
+--
+ALTER TABLE `ship_states`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `sliders`
 --
 ALTER TABLE `sliders`
@@ -550,13 +646,13 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT for table `compares`
 --
 ALTER TABLE `compares`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `coupons`
 --
 ALTER TABLE `coupons`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -568,7 +664,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `multi_images`
@@ -587,6 +683,24 @@ ALTER TABLE `personal_access_tokens`
 --
 ALTER TABLE `products`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
+-- AUTO_INCREMENT for table `ship_districs`
+--
+ALTER TABLE `ship_districs`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `ship_divisions`
+--
+ALTER TABLE `ship_divisions`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `ship_states`
+--
+ALTER TABLE `ship_states`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `sliders`

@@ -264,6 +264,13 @@ Route::post('/add-to-wishlist/{product_id}', [WishlistController::class, 'AddToW
 // Add to Compare
 Route::post('/add-to-compare/{product_id}', [CompareController::class, 'AddToCompare']);
 
+// Frontend Coupon Option
+Route::post('/coupon-apply', [CartController::class, 'CouponApply']);
+
+Route::get('/coupon-calculation', [CartController::class, 'CouponCalculation']);
+
+Route::get('/coupon-remove', [CartController::class, 'CouponRemove']);
+
 
 
 /// User Dashboard
@@ -293,6 +300,8 @@ Route::middleware(['auth', 'role:user'])->group(function () {
         Route::get('/cart-increment/{rowId}', 'CartIncrement');
 
     });
+
+
 
 }); // End Group User Middleware
 
