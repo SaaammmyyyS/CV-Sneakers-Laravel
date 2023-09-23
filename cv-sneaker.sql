@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 26, 2023 at 03:55 PM
+-- Generation Time: Sep 23, 2023 at 04:35 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -108,14 +108,6 @@ CREATE TABLE `compares` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data for table `compares`
---
-
-INSERT INTO `compares` (`id`, `user_id`, `product_id`, `created_at`, `updated_at`) VALUES
-(6, 3, 3, '2023-08-22 14:45:47', NULL),
-(7, 3, 6, '2023-08-22 14:45:49', NULL);
-
 -- --------------------------------------------------------
 
 --
@@ -138,7 +130,8 @@ CREATE TABLE `coupons` (
 
 INSERT INTO `coupons` (`id`, `coupon_name`, `coupon_discount`, `coupon_validity`, `status`, `created_at`, `updated_at`) VALUES
 (2, 'EZSNEAKERS TESTING', 5, '2023-08-30', 1, '2023-08-18 06:56:27', '2023-08-18 06:56:27'),
-(3, 'TESTING COUPON', 90, '2023-08-20', 1, '2023-08-20 16:57:34', NULL);
+(3, 'TESTING COUPON', 90, '2023-08-20', 1, '2023-08-20 16:57:34', NULL),
+(4, 'ALDOUS', 69, '3000-09-30', 1, '2023-09-05 21:29:18', NULL);
 
 -- --------------------------------------------------------
 
@@ -189,7 +182,9 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (18, '2023_08_18_134244_create_coupons_table', 10),
 (19, '2023_08_19_010901_create_ship_divisions_table', 11),
 (20, '2023_08_19_011032_create_ship_districs_table', 11),
-(21, '2023_08_19_011157_create_ship_states_table', 11);
+(21, '2023_08_19_011157_create_ship_states_table', 11),
+(22, '2023_09_16_122134_create_orders_table', 12),
+(23, '2023_09_16_123324_create_order_items_table', 12);
 
 -- --------------------------------------------------------
 
@@ -239,6 +234,122 @@ INSERT INTO `multi_images` (`id`, `product_id`, `photo_name`, `created_at`, `upd
 (32, 11, 'upload/products/multi-image/1772730755951736.png', '2023-07-28 21:16:31', NULL),
 (33, 11, 'upload/products/multi-image/1772730756044931.png', '2023-07-28 21:16:32', NULL),
 (34, 12, 'upload/products/multi-image/1774465477814141.jpg', '2023-08-17 00:49:12', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `orders`
+--
+
+CREATE TABLE `orders` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `user_id` bigint(20) UNSIGNED NOT NULL,
+  `division_id` bigint(20) UNSIGNED NOT NULL,
+  `district_id` bigint(20) UNSIGNED NOT NULL,
+  `state_id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `phone` varchar(255) NOT NULL,
+  `address` varchar(255) DEFAULT NULL,
+  `post_code` varchar(255) DEFAULT NULL,
+  `notes` text DEFAULT NULL,
+  `payment_type` varchar(255) DEFAULT NULL,
+  `payment_method` varchar(255) DEFAULT NULL,
+  `transaction_id` varchar(255) DEFAULT NULL,
+  `currency` varchar(255) NOT NULL,
+  `amount` double(8,2) NOT NULL,
+  `order_number` varchar(255) DEFAULT NULL,
+  `invoice_no` varchar(255) NOT NULL,
+  `order_date` varchar(255) NOT NULL,
+  `order_month` varchar(255) NOT NULL,
+  `order_year` varchar(255) NOT NULL,
+  `confirmed_date` varchar(255) DEFAULT NULL,
+  `processing_date` varchar(255) DEFAULT NULL,
+  `picked_date` varchar(255) DEFAULT NULL,
+  `shipped_date` varchar(255) DEFAULT NULL,
+  `delivered_date` varchar(255) DEFAULT NULL,
+  `cancel_date` varchar(255) DEFAULT NULL,
+  `return_date` varchar(255) DEFAULT NULL,
+  `return_reason` varchar(255) DEFAULT NULL,
+  `status` varchar(255) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `orders`
+--
+
+INSERT INTO `orders` (`id`, `user_id`, `division_id`, `district_id`, `state_id`, `name`, `email`, `phone`, `address`, `post_code`, `notes`, `payment_type`, `payment_method`, `transaction_id`, `currency`, `amount`, `order_number`, `invoice_no`, `order_date`, `order_month`, `order_year`, `confirmed_date`, `processing_date`, `picked_date`, `shipped_date`, `delivered_date`, `cancel_date`, `return_date`, `return_reason`, `status`, `created_at`, `updated_at`) VALUES
+(1, 3, 3, 4, 5, 'User', 'isrwabina@addu.edu.ph', '09268827283', 'Villa Patricia, Mankilam', '8100', 'testing', 'card_1NrBp4JyMbg1UYGzmOuVni4y', 'Stripe', 'txn_3NrBp5JyMbg1UYGz0KL9HYiz', 'usd', 4543.00, '650674d906c3a', 'EOS33983577', '17 September 2023', 'September', '2023', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '2023-09-16 19:39:06', NULL),
+(2, 3, 3, 4, 5, 'User', 'isrwabina@addu.edu.ph', '09268827283', 'Villa Patricia, Mankilam', '8100', 'test 2', 'card_1NrDEdJyMbg1UYGzCB7FZefy', 'Stripe', 'txn_3NrDEhJyMbg1UYGz1vd5mDkG', 'usd', 391.00, '65068a0ce4270', 'EOS80954915', '17 September 2023', 'September', '2023', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '2023-09-16 21:09:36', NULL),
+(3, 3, 3, 4, 5, 'User', 'isrwabina@addu.edu.ph', '09268827283', 'Villa Patricia, Mankilam', '8100', NULL, 'card_1NrVHpJyMbg1UYGz8hLU46kG', 'Stripe', 'txn_3NrVHrJyMbg1UYGz0yDMSYh2', 'usd', 4565.00, '6507991abd0f3', 'EOS69039541', '18 September 2023', 'September', '2023', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '2023-09-17 16:26:04', NULL),
+(4, 3, 3, 4, 6, 'User', 'isrwabina@addu.edu.ph', '09268827283', 'Villa Patricia, Mankilam', '8100', NULL, 'card_1NrciOJyMbg1UYGzvGRH5hqT', 'Stripe', 'txn_3NrciQJyMbg1UYGz1BsGs5ew', 'usd', 1919.00, '650808a55b760', 'EOS75209830', '18 September 2023', 'September', '2023', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '2023-09-18 00:22:02', NULL),
+(5, 3, 3, 4, 6, 'User', 'isrwabina@addu.edu.ph', '09268827283', 'Villa Patricia, Mankilam', '8100', NULL, 'card_1NrdzuJyMbg1UYGzpI5vPIS2', 'Stripe', 'txn_3NrdzwJyMbg1UYGz085cSyrF', 'usd', 3007.00, '65081be80958c', 'EOS41183076', '18 September 2023', 'September', '2023', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '2023-09-18 01:44:09', NULL),
+(6, 3, 3, 4, 6, 'User', 'isrwabina@addu.edu.ph', '09268827283', 'Villa Patricia, Mankilam', '8100', NULL, 'card_1NreBXJyMbg1UYGzkdllh7h6', 'Stripe', 'txn_3NreBZJyMbg1UYGz1JHftVzB', 'usd', 2931.00, '65081eb8e07c2', 'EOS56658583', '18 September 2023', 'September', '2023', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '2023-09-18 01:56:10', NULL),
+(7, 3, 3, 4, 5, 'User', 'isrwabina@addu.edu.ph', '09268827283', 'Villa Patricia, Mankilam', '8100', 'cash on delivery testing', 'Cash On Delivery', 'Cash On Delivery', NULL, 'Usd', 1781.00, NULL, 'EOS99218803', '19 September 2023', 'September', '2023', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '2023-09-19 06:10:51', NULL),
+(8, 3, 3, 4, 6, 'User', 'isrwabina@addu.edu.ph', '09268827283', 'Villa Patricia, Mankilam', '8100', NULL, 'card_1Ns5HgJyMbg1UYGz3FOyXPGU', 'Stripe', 'txn_3Ns5HhJyMbg1UYGz1hwIVxp2', 'usd', 3228.00, '6509b5a0e50e7', 'EOS30324233', '19 September 2023', 'September', '2023', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '2023-09-19 06:52:20', NULL),
+(9, 3, 3, 4, 6, 'User', 'isrwabina@addu.edu.ph', '09268827283', 'Villa Patricia, Mankilam', '8100', NULL, 'card_1Ns5IqJyMbg1UYGzAWpi32Lx', 'Stripe', 'txn_3Ns5IsJyMbg1UYGz1rK8w5eF', 'usd', 3228.00, '6509b5e98b913', 'EOS44460247', '19 September 2023', 'September', '2023', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '2023-09-19 06:53:30', NULL),
+(10, 3, 3, 4, 6, 'User', 'isrwabina@addu.edu.ph', '09268827283', 'Villa Patricia, Mankilam', '8100', NULL, 'card_1Ns5MCJyMbg1UYGzkfHhFGxN', 'Stripe', 'txn_3Ns5MDJyMbg1UYGz1nLv0uya', 'usd', 3228.00, '6509b6b8979ec', 'EOS94286545', '19 September 2023', 'September', '2023', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '2023-09-19 06:56:58', NULL),
+(11, 3, 3, 4, 5, 'User', 'testing@gmail.com', '09268827283', 'Villa Patricia, Mankilam', '8100', NULL, 'card_1Ns5PkJyMbg1UYGzNzXGIzuX', 'Stripe', 'txn_3Ns5PlJyMbg1UYGz0tuKIeEt', 'usd', 4467.00, '6509b7951ada5', 'EOS31316463', '19 September 2023', 'September', '2023', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '2023-09-19 07:00:38', NULL),
+(12, 3, 3, 4, 5, 'User', 'testing@gmail.com', '09268827283', 'Villa Patricia, Mankilam', '8100', NULL, 'card_1Ns5QgJyMbg1UYGzBRYoeNS0', 'Stripe', 'txn_3Ns5QhJyMbg1UYGz0q4Lovln', 'usd', 4467.00, '6509b7ceec3e4', 'EOS46254023', '19 September 2023', 'September', '2023', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '2023-09-19 07:01:36', NULL),
+(13, 3, 3, 4, 6, 'User', 'isrwabina@addu.edu.ph', '09268827283', 'Villa Patricia, Mankilam', '8100', NULL, 'Cash On Delivery', 'Cash On Delivery', NULL, 'Usd', 13500.00, NULL, 'EOS81750000', '19 September 2023', 'September', '2023', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '2023-09-19 07:06:44', NULL),
+(14, 3, 3, 4, 6, 'User', 'isrwabina@addu.edu.ph', '09268827283', 'Villa Patricia, Mankilam', '8100', NULL, 'Cash On Delivery', 'Cash On Delivery', NULL, 'Usd', 13500.00, NULL, 'EOS74476717', '19 September 2023', 'September', '2023', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '2023-09-19 07:08:03', NULL),
+(15, 3, 3, 4, 5, 'User', 'isrwabina@addu.edu.ph', '09268827283', 'Villa Patricia, Mankilam', '8100', NULL, 'card_1NsJB5JyMbg1UYGzy6QYkTrI', 'Stripe', 'txn_3NsJB7JyMbg1UYGz1wWtUrx9', 'usd', 7843.00, '650a86415402c', 'EOS39676552', '20 September 2023', 'September', '2023', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '2023-09-19 21:42:29', NULL),
+(16, 3, 3, 4, 5, 'User', 'isrwabina@addu.edu.ph', '09268827283', 'Villa Patricia, Mankilam', '8100', NULL, 'card_1NsPQ0JyMbg1UYGzFymGaWxG', 'Stripe', 'txn_3NsPQ1JyMbg1UYGz1Mi9yMIB', 'usd', 2931.00, '650ae3f5c42d2', 'EOS45455836', '20 September 2023', 'September', '2023', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '2023-09-20 04:22:15', NULL),
+(17, 3, 3, 4, 5, 'User', 'isrwabina@addu.edu.ph', '09268827283', 'Villa Patricia, Mankilam', '8100', NULL, 'card_1NsPReJyMbg1UYGzVtoFveDn', 'Stripe', 'txn_3NsPRfJyMbg1UYGz0ct8MIM5', 'usd', 2931.00, '650ae45bbbfe5', 'EOS25223996', '20 September 2023', 'September', '2023', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '2023-09-20 04:23:57', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `order_items`
+--
+
+CREATE TABLE `order_items` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `order_id` bigint(20) UNSIGNED NOT NULL,
+  `product_id` bigint(20) UNSIGNED NOT NULL,
+  `vendor_id` varchar(255) DEFAULT NULL,
+  `color` varchar(255) DEFAULT NULL,
+  `size` varchar(255) DEFAULT NULL,
+  `qty` varchar(255) NOT NULL,
+  `price` double(8,2) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `order_items`
+--
+
+INSERT INTO `order_items` (`id`, `order_id`, `product_id`, `vendor_id`, `color`, `size`, `qty`, `price`, `created_at`, `updated_at`) VALUES
+(1, 1, 1, '2', 'white', '7', '1', 5200.00, '2023-09-16 19:39:06', NULL),
+(2, 1, 2, NULL, 'Red', '5', '1', 4500.00, '2023-09-16 19:39:06', NULL),
+(3, 1, 3, '16', NULL, NULL, '1', 4955.00, '2023-09-16 19:39:06', NULL),
+(4, 2, 10, '2', 'Red', 'Small', '1', 12.00, '2023-09-16 21:09:36', NULL),
+(5, 2, 11, '2', 'Red', '11', '1', 2.00, '2023-09-16 21:09:36', NULL),
+(6, 2, 6, NULL, 'Red', NULL, '1', 1234.00, '2023-09-16 21:09:36', NULL),
+(7, 2, 9, '16', 'Red', 'Small', '1', 12.00, '2023-09-16 21:09:36', NULL),
+(8, 3, 3, '16', NULL, NULL, '1', 4955.00, '2023-09-17 16:26:04', NULL),
+(9, 3, 1, '2', 'white', '7', '1', 5200.00, '2023-09-17 16:26:04', NULL),
+(10, 3, 10, '2', 'Red', 'Small', '6', 12.00, '2023-09-17 16:26:04', NULL),
+(11, 3, 2, NULL, 'Red', '5', '1', 4500.00, '2023-09-17 16:26:04', NULL),
+(12, 4, 3, '16', NULL, NULL, '1', 4955.00, '2023-09-18 00:22:02', NULL),
+(13, 4, 6, NULL, 'Red', NULL, '1', 1234.00, '2023-09-18 00:22:02', NULL),
+(14, 5, 2, NULL, 'Red', '5', '1', 4500.00, '2023-09-18 01:44:09', NULL),
+(15, 5, 1, '2', 'white', '7', '1', 5200.00, '2023-09-18 01:44:09', NULL),
+(16, 6, 2, NULL, 'Red', '5', '1', 4500.00, '2023-09-18 01:56:10', NULL),
+(17, 6, 3, '16', NULL, NULL, '1', 4955.00, '2023-09-18 01:56:10', NULL),
+(18, 7, 2, NULL, 'Red', '5', '1', 4500.00, '2023-09-19 06:10:51', NULL),
+(19, 7, 6, NULL, 'Red', NULL, '1', 1234.00, '2023-09-19 06:10:51', NULL),
+(20, 7, 7, NULL, 'Red', 'Small', '1', 12.00, '2023-09-19 06:10:51', NULL),
+(21, 10, 1, '2', 'white', '7', '2', 5200.00, '2023-09-19 06:57:03', NULL),
+(22, 10, 10, '2', 'Red', 'Small', '1', 12.00, '2023-09-19 06:57:03', NULL),
+(23, 12, 2, NULL, 'Red', '5', '1', 4500.00, '2023-09-19 07:01:41', NULL),
+(24, 12, 3, '16', NULL, NULL, '2', 4955.00, '2023-09-19 07:01:41', NULL),
+(25, 14, 2, NULL, 'Red', '5', '3', 4500.00, '2023-09-19 07:08:08', NULL),
+(26, 15, 2, NULL, 'Red', '5', '1', 4500.00, '2023-09-19 21:42:36', NULL),
+(27, 15, 1, '2', 'white', '7', '4', 5200.00, '2023-09-19 21:42:36', NULL);
 
 -- --------------------------------------------------------
 
@@ -340,7 +451,8 @@ CREATE TABLE `ship_districs` (
 
 INSERT INTO `ship_districs` (`id`, `division_id`, `district_name`, `created_at`, `updated_at`) VALUES
 (2, 2, 'testing', NULL, NULL),
-(3, 3, 'Davao del Norte', NULL, NULL);
+(3, 3, 'Davao del Norte', NULL, NULL),
+(4, 3, 'Region 11 district testing', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -384,7 +496,9 @@ CREATE TABLE `ship_states` (
 
 INSERT INTO `ship_states` (`id`, `division_id`, `district_id`, `state_name`, `created_at`, `updated_at`) VALUES
 (2, 2, 2, 'okadisfwear', NULL, NULL),
-(4, 3, 3, 'Tagum CIty', NULL, NULL);
+(4, 3, 3, 'Tagum CIty', NULL, NULL),
+(5, 3, 4, 'state testing', NULL, NULL),
+(6, 3, 4, 'sdfawerfasdf', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -558,6 +672,19 @@ ALTER TABLE `multi_images`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `orders`
+--
+ALTER TABLE `orders`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `order_items`
+--
+ALTER TABLE `order_items`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `order_items_order_id_foreign` (`order_id`);
+
+--
 -- Indexes for table `password_reset_tokens`
 --
 ALTER TABLE `password_reset_tokens`
@@ -652,7 +779,7 @@ ALTER TABLE `compares`
 -- AUTO_INCREMENT for table `coupons`
 --
 ALTER TABLE `coupons`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -664,13 +791,25 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `multi_images`
 --
 ALTER TABLE `multi_images`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+
+--
+-- AUTO_INCREMENT for table `orders`
+--
+ALTER TABLE `orders`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+
+--
+-- AUTO_INCREMENT for table `order_items`
+--
+ALTER TABLE `order_items`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -688,7 +827,7 @@ ALTER TABLE `products`
 -- AUTO_INCREMENT for table `ship_districs`
 --
 ALTER TABLE `ship_districs`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `ship_divisions`
@@ -700,7 +839,7 @@ ALTER TABLE `ship_divisions`
 -- AUTO_INCREMENT for table `ship_states`
 --
 ALTER TABLE `ship_states`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `sliders`
@@ -725,6 +864,16 @@ ALTER TABLE `users`
 --
 ALTER TABLE `wishlists`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `order_items`
+--
+ALTER TABLE `order_items`
+  ADD CONSTRAINT `order_items_order_id_foreign` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

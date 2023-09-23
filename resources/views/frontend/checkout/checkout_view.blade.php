@@ -164,7 +164,7 @@
             <h6 class="text-muted">Coupon Discount</h6>
         </td>
         <td class="cart_total_amount">
-            <h4 class="text-brand text-end">${{session::get('coupon')['coupon_discount']}}</h4>
+            <h4 class="text-brand text-end">${{ session()->get('coupon')['discount_amount'] }}</h4>
         </td>
     </tr>
 
@@ -243,7 +243,7 @@
                     type: "GET",
                     dataType:"json",
                     success:function(data){
-                        $('select[name="district_id"]').html('');
+                        $('select[name="state_id"]').html('');
                         var d =$('select[name="district_id"]').empty();
                         $.each(data, function(key, value){
                             $('select[name="district_id"]').append('<option value="'+ value.id + '">' + value.district_name + '</option>');
