@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 23, 2023 at 04:35 AM
+-- Generation Time: Sep 24, 2023 at 06:04 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -297,7 +297,10 @@ INSERT INTO `orders` (`id`, `user_id`, `division_id`, `district_id`, `state_id`,
 (14, 3, 3, 4, 6, 'User', 'isrwabina@addu.edu.ph', '09268827283', 'Villa Patricia, Mankilam', '8100', NULL, 'Cash On Delivery', 'Cash On Delivery', NULL, 'Usd', 13500.00, NULL, 'EOS74476717', '19 September 2023', 'September', '2023', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '2023-09-19 07:08:03', NULL),
 (15, 3, 3, 4, 5, 'User', 'isrwabina@addu.edu.ph', '09268827283', 'Villa Patricia, Mankilam', '8100', NULL, 'card_1NsJB5JyMbg1UYGzy6QYkTrI', 'Stripe', 'txn_3NsJB7JyMbg1UYGz1wWtUrx9', 'usd', 7843.00, '650a86415402c', 'EOS39676552', '20 September 2023', 'September', '2023', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '2023-09-19 21:42:29', NULL),
 (16, 3, 3, 4, 5, 'User', 'isrwabina@addu.edu.ph', '09268827283', 'Villa Patricia, Mankilam', '8100', NULL, 'card_1NsPQ0JyMbg1UYGzFymGaWxG', 'Stripe', 'txn_3NsPQ1JyMbg1UYGz1Mi9yMIB', 'usd', 2931.00, '650ae3f5c42d2', 'EOS45455836', '20 September 2023', 'September', '2023', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '2023-09-20 04:22:15', NULL),
-(17, 3, 3, 4, 5, 'User', 'isrwabina@addu.edu.ph', '09268827283', 'Villa Patricia, Mankilam', '8100', NULL, 'card_1NsPReJyMbg1UYGzVtoFveDn', 'Stripe', 'txn_3NsPRfJyMbg1UYGz0ct8MIM5', 'usd', 2931.00, '650ae45bbbfe5', 'EOS25223996', '20 September 2023', 'September', '2023', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '2023-09-20 04:23:57', NULL);
+(17, 3, 3, 4, 5, 'User', 'isrwabina@addu.edu.ph', '09268827283', 'Villa Patricia, Mankilam', '8100', NULL, 'card_1NsPReJyMbg1UYGzVtoFveDn', 'Stripe', 'txn_3NsPRfJyMbg1UYGz0ct8MIM5', 'usd', 2931.00, '650ae45bbbfe5', 'EOS25223996', '20 September 2023', 'September', '2023', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '2023-09-20 04:23:57', NULL),
+(18, 3, 3, 4, 5, 'User', 'isrwabina@addu.edu.ph', '09268827283', 'Villa Patricia, Mankilam', '8100', NULL, 'card_1NtLpUJyMbg1UYGz9u1fGePw', 'Stripe', 'txn_3NtLpVJyMbg1UYGz0CdismzZ', 'usd', 6003.00, '650e510884819', 'EOS24051735', '23 September 2023', 'September', '2023', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '2023-09-22 18:44:27', NULL),
+(19, 3, 3, 4, 5, 'User', 'ivansamwabina@gmail.com', '09268827283', 'Villa Patricia, Mankilam', '8100', NULL, 'card_1NtSkmJyMbg1UYGzABPcz8Zo', 'Stripe', 'txn_3NtSknJyMbg1UYGz0iWu9Pqk', 'usd', 1395.00, '650eb90095c70', 'EOS97434962', '23 September 2023', 'September', '2023', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '2023-09-23 02:08:03', NULL),
+(20, 3, 3, 4, 5, 'User', 'isrwabina@addu.edu.ph', '09268827283', 'Villa Patricia, Mankilam', '8100', NULL, 'card_1NtSnKJyMbg1UYGzvKTZ0WLM', 'Stripe', 'txn_3NtSnLJyMbg1UYGz1PCged2k', 'usd', 4500.00, '650eb99ebd9e1', 'EOS20715107', '23 September 2023', 'September', '2023', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '2023-09-23 02:10:40', NULL);
 
 -- --------------------------------------------------------
 
@@ -349,7 +352,11 @@ INSERT INTO `order_items` (`id`, `order_id`, `product_id`, `vendor_id`, `color`,
 (24, 12, 3, '16', NULL, NULL, '2', 4955.00, '2023-09-19 07:01:41', NULL),
 (25, 14, 2, NULL, 'Red', '5', '3', 4500.00, '2023-09-19 07:08:08', NULL),
 (26, 15, 2, NULL, 'Red', '5', '1', 4500.00, '2023-09-19 21:42:36', NULL),
-(27, 15, 1, '2', 'white', '7', '4', 5200.00, '2023-09-19 21:42:36', NULL);
+(27, 15, 1, '2', 'white', '7', '4', 5200.00, '2023-09-19 21:42:36', NULL),
+(28, 18, 2, NULL, 'Red', '5', '1', 4500.00, '2023-09-22 18:44:32', NULL),
+(29, 18, 3, '16', NULL, NULL, '3', 4955.00, '2023-09-22 18:44:32', NULL),
+(30, 19, 2, NULL, 'Red', '5', '1', 4500.00, '2023-09-23 02:08:12', NULL),
+(31, 20, 2, NULL, 'Red', '5', '1', 4500.00, '2023-09-23 02:10:47', NULL);
 
 -- --------------------------------------------------------
 
@@ -586,7 +593,7 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `name`, `username`, `email`, `email_verified_at`, `password`, `photo`, `phone`, `address`, `vendor_join`, `vendor_short_info`, `role`, `status`, `remember_token`, `created_at`, `updated_at`) VALUES
 (1, 'Admin', 'admin', 'admin@gmail.com', NULL, '$2y$10$9TWAk7kJy9mIMiPOnPJQwuJwqMKEUvgvN5DjDOLz8EDsCSYyDVTji', NULL, NULL, NULL, NULL, NULL, 'admin', 'active', NULL, NULL, '2023-07-12 18:23:29'),
-(2, 'Nest Food.,Ltd', 'vendor', 'vendor@gmail.com', NULL, '$2y$10$PyOzt65.aX4LMLGUvz/5k.tV4C9SHFV3XZsOYPL2yIHR7ZV94hTLG', '202307130242vendor-15.png', '540-025-124553', '5171 W Campbell Ave undefined, Utah 53127 United States', '2023', 'Got a smooth, buttery spread in your fridge? Chances are good that it\'s Good Chef. This brand made Lionto\'s list of the most popular grocery brands across the country.', 'vendor', 'inactive', NULL, NULL, '2023-08-18 16:57:42'),
+(2, 'Nest Food.,Ltd', 'vendor', 'vendor@gmail.com', NULL, '$2y$10$PyOzt65.aX4LMLGUvz/5k.tV4C9SHFV3XZsOYPL2yIHR7ZV94hTLG', '202307130242vendor-15.png', '540-025-124553', '5171 W Campbell Ave undefined, Utah 53127 United States', '2023', 'Got a smooth, buttery spread in your fridge? Chances are good that it\'s Good Chef. This brand made Lionto\'s list of the most popular grocery brands across the country.', 'vendor', 'active', NULL, NULL, '2023-09-22 21:01:43'),
 (3, 'User', 'user', 'user@gmail.com', NULL, '$2y$10$6LuePCajUVQ/KqNz761s/.X29FfsE.fy80EEgD3Hr1p4MmLGwVW5e', '202307150419cat-3.png', '09268827283', NULL, NULL, NULL, 'user', 'active', NULL, NULL, '2023-08-10 21:27:48'),
 (15, 'Walton', 'walton', 'walton@gmail.com', NULL, '$2y$10$taOSnwF2xvEOOU4m0jgU3OAhUomxZAqWyFPPDu0asbK53AiZXNAYi', NULL, '0926882', NULL, '2022', NULL, 'vendor', 'active', NULL, NULL, '2023-08-07 01:25:38'),
 (16, 'Sonny', 'sonny', 'sonny@gmail.com', NULL, '$2y$10$8ssYS3a5wuSRWDiiiFIkXOsU0NSTCXowdV4FFnOOIirq72YuGs0iG', NULL, '092648', NULL, '2022', NULL, 'vendor', 'active', NULL, NULL, '2023-07-18 02:23:47'),
@@ -803,13 +810,13 @@ ALTER TABLE `multi_images`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `order_items`
 --
 ALTER TABLE `order_items`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`

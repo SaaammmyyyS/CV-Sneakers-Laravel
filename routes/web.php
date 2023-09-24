@@ -5,10 +5,12 @@ use App\Http\Controllers\Backend\BannerController;
 use App\Http\Controllers\Backend\BrandController;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\CouponController;
+use App\Http\Controllers\Backend\OrderController;
 use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\ShippingAreaController;
 use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Backend\SubCategoryController;
+use App\Http\Controllers\Backend\VendorOrderController;
 use App\Http\Controllers\Backend\VendorProductController;
 use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\IndexController;
@@ -91,9 +93,12 @@ Route::middleware(['auth', 'role:vendor'])->group(function () {
         Route::get('/vendor/product/inactive/{id}', 'VendorProductInactive')->name('vendor.product.inactive');
         Route::get('/vendor/product/active/{id}', 'VendorProductActive')->name('vendor.product.active');
         Route::get('/vendor/delete/product/{id}', 'VendorDeleteProduct')->name('vendor.delete.product');
-
-
         Route::get('/vendor/subcategory/ajax/{category_id}', 'VendorGetSubCategory');
+    });
+
+
+    Route::controller(VendorOrderController::class)->group(function(){
+        Route::get('/vendor/order', 'VendorOrder')->name('vendor.order');
     });
 });
 
@@ -230,6 +235,11 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::post('/update/state', 'UpdateState')->name('update.state');
         Route::get('/delete/state/{id}', 'DeleteState')->name('delete.state');
 
+    });
+
+    // Admin Order All Routes
+    Route::controller(OrderController::class)->group(function(){
+        Route::get('/pending/order', 'PendingOrder')->name('pending.order');
     });
 });
 // Admin End Middleware

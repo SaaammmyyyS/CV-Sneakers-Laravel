@@ -45,9 +45,8 @@
                 <div class="menu-title">All Order</div>
             </a>
             <ul>
-                <li> <a href="app-emailbox.html"><i class="bx bx-right-arrow-alt"></i>Email</a></li>
+                <li> <a href="{{route('vendor.order')}}"><i class="bx bx-right-arrow-alt"></i>Vendor Order</a></li>
 
-                </li>
             </ul>
         </li>
         @else
