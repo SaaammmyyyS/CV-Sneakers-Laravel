@@ -15,6 +15,7 @@ use App\Http\Controllers\Backend\VendorProductController;
 use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\IndexController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\User\AllUserController;
 use App\Http\Controllers\User\CheckoutController;
 use App\Http\Controllers\User\CompareController;
 use App\Http\Controllers\User\StripeController;
@@ -333,6 +334,16 @@ Route::middleware(['auth', 'role:user'])->group(function () {
     // Cash on Delivery All Route
     Route::controller(StripeController::class)->group(function(){
         Route::post('/cash/order', 'CashOrder')->name('cash.order');
+
+    });
+
+    // User Dashboard All Route
+    Route::controller(AllUserController::class)->group(function(){
+        Route::get('/user/account/page', 'UserAccount')->name('user.account.page');
+        Route::get('/user/change/password', 'UserChangePassword')->name('user.change.password');
+        Route::get('/user/change/password', 'UserChangePassword')->name('user.change.password');
+        Route::get('/user/order/page', 'UserOrderPage')->name('user.order.page');
+        Route::get('/user/order_details/{order_id}', 'UserOrderDetails')->name('user.order_details');
 
     });
 
