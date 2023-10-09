@@ -18,6 +18,10 @@ This guide will walk you through the steps to set up and run the Laravel project
 - Node.js and npm installed on your system
 - MySQL database server
 
+
+## Update
+1. **git pull**
+
 ## Installation
 
 1. **Clone the Repository**: Open your terminal and navigate to the directory where you want to store the project. Run the following command to clone the repository and create a new folder for your project:
