@@ -45,4 +45,5 @@ class AllUserController extends Controller
         ]);
         return $pdf->download('invoice.pdf');
     } // End Method
+
 }
