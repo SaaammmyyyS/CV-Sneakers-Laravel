@@ -27,3 +27,95 @@ $(function(){
     });
 
   });
+
+
+
+  $(function(){
+    $(document).on('click','#confirm',function(e){
+        e.preventDefault();
+        var link = $(this).attr("href");
+
+
+                  Swal.fire({
+                    title: 'Are you sure to confirm?',
+                    text: "Once Confirm, You will not be able to change back to pending again",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, Confirm!'
+                  }).then((result) => {
+                    if (result.isConfirmed) {
+                      window.location.href = link
+                      Swal.fire(
+                        'Confirmed',
+                        'Confirm Change',
+                        'success'
+                      )
+                    }
+                  })
+
+
+    });
+
+  });
+
+  $(function(){
+    $(document).on('click','#processing',function(e){
+        e.preventDefault();
+        var link = $(this).attr("href");
+
+
+                  Swal.fire({
+                    title: 'Are you sure to process?',
+                    text: "Once Process, You will not be able to change back",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, Processing!'
+                  }).then((result) => {
+                    if (result.isConfirmed) {
+                      window.location.href = link
+                      Swal.fire(
+                        'Processing',
+                        'Process Change',
+                        'success'
+                      )
+                    }
+                  })
+
+
+    });
+
+  });
+
+  $(function(){
+    $(document).on('click','#deliver',function(e){
+        e.preventDefault();
+        var link = $(this).attr("href");
+
+
+                  Swal.fire({
+                    title: 'Are you sure to deliver?',
+                    text: "Once Deliver, You will not be able to change back",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, Deliver!'
+                  }).then((result) => {
+                    if (result.isConfirmed) {
+                      window.location.href = link
+                      Swal.fire(
+                        'Deliver',
+                        'Deliver Change',
+                        'success'
+                      )
+                    }
+                  })
+
+
+    });
+
+  });
