@@ -7,6 +7,7 @@ use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\CouponController;
 use App\Http\Controllers\Backend\OrderController;
 use App\Http\Controllers\Backend\ProductController;
+use App\Http\Controllers\Backend\ReturnController;
 use App\Http\Controllers\Backend\ShippingAreaController;
 use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Backend\SubCategoryController;
@@ -250,6 +251,13 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('/processing/deliver/{order_id}', 'ProcessingToDeliver')->name('processing-deliver');
         Route::get('/admin/invoice/download/{order_id}', 'AdminInvoiceDownload')->name('admin.invoice.download');
     });
+
+    // Return Order All Route
+    Route::controller(ReturnController::class)->group(function(){
+        Route::get('/return/request', 'ReturnRequest')->name('return.request');
+        Route::get('/return/request/approve/{order_id}', 'ReturnRequestApprove')->name('return.request.approve');
+        Route::get('/complete/return/request', 'CompleteReturnRequest')->name('complete.return.request');
+    });
 });
 // Admin End Middleware
 
@@ -353,6 +361,8 @@ Route::middleware(['auth', 'role:user'])->group(function () {
         Route::get('/user/order/page', 'UserOrderPage')->name('user.order.page');
         Route::get('/user/order_details/{order_id}', 'UserOrderDetails')->name('user.order_details');
         Route::get('/user/invoice_download/{order_id}', 'UserInvoiceDownload')->name('user.invoice_download');
+        Route::post('/return/order/{order_id}', 'ReturnOrder')->name('return.order');
+        Route::get('/return/order/page', 'ReturnOrderPage')->name('return.order.page');
 
     });
 
