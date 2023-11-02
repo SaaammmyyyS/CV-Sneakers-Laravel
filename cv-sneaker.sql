@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 07, 2023 at 03:56 AM
+-- Generation Time: Nov 02, 2023 at 04:27 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -271,6 +271,7 @@ CREATE TABLE `orders` (
   `cancel_date` varchar(255) DEFAULT NULL,
   `return_date` varchar(255) DEFAULT NULL,
   `return_reason` varchar(255) DEFAULT NULL,
+  `return_order` varchar(255) DEFAULT '0',
   `status` varchar(255) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -280,27 +281,33 @@ CREATE TABLE `orders` (
 -- Dumping data for table `orders`
 --
 
-INSERT INTO `orders` (`id`, `user_id`, `division_id`, `district_id`, `state_id`, `name`, `email`, `phone`, `address`, `post_code`, `notes`, `payment_type`, `payment_method`, `transaction_id`, `currency`, `amount`, `order_number`, `invoice_no`, `order_date`, `order_month`, `order_year`, `confirmed_date`, `processing_date`, `picked_date`, `shipped_date`, `delivered_date`, `cancel_date`, `return_date`, `return_reason`, `status`, `created_at`, `updated_at`) VALUES
-(1, 3, 3, 4, 5, 'User', 'isrwabina@addu.edu.ph', '09268827283', 'Villa Patricia, Mankilam', '8100', 'testing', 'card_1NrBp4JyMbg1UYGzmOuVni4y', 'Stripe', 'txn_3NrBp5JyMbg1UYGz0KL9HYiz', 'usd', 4543.00, '650674d906c3a', 'EOS33983577', '17 September 2023', 'September', '2023', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '2023-09-16 19:39:06', NULL),
-(2, 3, 3, 4, 5, 'User', 'isrwabina@addu.edu.ph', '09268827283', 'Villa Patricia, Mankilam', '8100', 'test 2', 'card_1NrDEdJyMbg1UYGzCB7FZefy', 'Stripe', 'txn_3NrDEhJyMbg1UYGz1vd5mDkG', 'usd', 391.00, '65068a0ce4270', 'EOS80954915', '17 September 2023', 'September', '2023', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '2023-09-16 21:09:36', NULL),
-(3, 3, 3, 4, 5, 'User', 'isrwabina@addu.edu.ph', '09268827283', 'Villa Patricia, Mankilam', '8100', NULL, 'card_1NrVHpJyMbg1UYGz8hLU46kG', 'Stripe', 'txn_3NrVHrJyMbg1UYGz0yDMSYh2', 'usd', 4565.00, '6507991abd0f3', 'EOS69039541', '18 September 2023', 'September', '2023', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '2023-09-17 16:26:04', NULL),
-(4, 3, 3, 4, 6, 'User', 'isrwabina@addu.edu.ph', '09268827283', 'Villa Patricia, Mankilam', '8100', NULL, 'card_1NrciOJyMbg1UYGzvGRH5hqT', 'Stripe', 'txn_3NrciQJyMbg1UYGz1BsGs5ew', 'usd', 1919.00, '650808a55b760', 'EOS75209830', '18 September 2023', 'September', '2023', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '2023-09-18 00:22:02', NULL),
-(5, 3, 3, 4, 6, 'User', 'isrwabina@addu.edu.ph', '09268827283', 'Villa Patricia, Mankilam', '8100', NULL, 'card_1NrdzuJyMbg1UYGzpI5vPIS2', 'Stripe', 'txn_3NrdzwJyMbg1UYGz085cSyrF', 'usd', 3007.00, '65081be80958c', 'EOS41183076', '18 September 2023', 'September', '2023', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '2023-09-18 01:44:09', NULL),
-(6, 3, 3, 4, 6, 'User', 'isrwabina@addu.edu.ph', '09268827283', 'Villa Patricia, Mankilam', '8100', NULL, 'card_1NreBXJyMbg1UYGzkdllh7h6', 'Stripe', 'txn_3NreBZJyMbg1UYGz1JHftVzB', 'usd', 2931.00, '65081eb8e07c2', 'EOS56658583', '18 September 2023', 'September', '2023', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '2023-09-18 01:56:10', NULL),
-(7, 3, 3, 4, 5, 'User', 'isrwabina@addu.edu.ph', '09268827283', 'Villa Patricia, Mankilam', '8100', 'cash on delivery testing', 'Cash On Delivery', 'Cash On Delivery', NULL, 'Usd', 1781.00, NULL, 'EOS99218803', '19 September 2023', 'September', '2023', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '2023-09-19 06:10:51', NULL),
-(8, 3, 3, 4, 6, 'User', 'isrwabina@addu.edu.ph', '09268827283', 'Villa Patricia, Mankilam', '8100', NULL, 'card_1Ns5HgJyMbg1UYGz3FOyXPGU', 'Stripe', 'txn_3Ns5HhJyMbg1UYGz1hwIVxp2', 'usd', 3228.00, '6509b5a0e50e7', 'EOS30324233', '19 September 2023', 'September', '2023', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '2023-09-19 06:52:20', NULL),
-(9, 3, 3, 4, 6, 'User', 'isrwabina@addu.edu.ph', '09268827283', 'Villa Patricia, Mankilam', '8100', NULL, 'card_1Ns5IqJyMbg1UYGzAWpi32Lx', 'Stripe', 'txn_3Ns5IsJyMbg1UYGz1rK8w5eF', 'usd', 3228.00, '6509b5e98b913', 'EOS44460247', '19 September 2023', 'September', '2023', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '2023-09-19 06:53:30', NULL),
-(10, 3, 3, 4, 6, 'User', 'isrwabina@addu.edu.ph', '09268827283', 'Villa Patricia, Mankilam', '8100', NULL, 'card_1Ns5MCJyMbg1UYGzkfHhFGxN', 'Stripe', 'txn_3Ns5MDJyMbg1UYGz1nLv0uya', 'usd', 3228.00, '6509b6b8979ec', 'EOS94286545', '19 September 2023', 'September', '2023', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '2023-09-19 06:56:58', NULL),
-(11, 3, 3, 4, 5, 'User', 'testing@gmail.com', '09268827283', 'Villa Patricia, Mankilam', '8100', NULL, 'card_1Ns5PkJyMbg1UYGzNzXGIzuX', 'Stripe', 'txn_3Ns5PlJyMbg1UYGz0tuKIeEt', 'usd', 4467.00, '6509b7951ada5', 'EOS31316463', '19 September 2023', 'September', '2023', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '2023-09-19 07:00:38', NULL),
-(12, 3, 3, 4, 5, 'User', 'testing@gmail.com', '09268827283', 'Villa Patricia, Mankilam', '8100', NULL, 'card_1Ns5QgJyMbg1UYGzBRYoeNS0', 'Stripe', 'txn_3Ns5QhJyMbg1UYGz0q4Lovln', 'usd', 4467.00, '6509b7ceec3e4', 'EOS46254023', '19 September 2023', 'September', '2023', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '2023-09-19 07:01:36', NULL),
-(13, 3, 3, 4, 6, 'User', 'isrwabina@addu.edu.ph', '09268827283', 'Villa Patricia, Mankilam', '8100', NULL, 'Cash On Delivery', 'Cash On Delivery', NULL, 'Usd', 13500.00, NULL, 'EOS81750000', '19 September 2023', 'September', '2023', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '2023-09-19 07:06:44', NULL),
-(14, 3, 3, 4, 6, 'User', 'isrwabina@addu.edu.ph', '09268827283', 'Villa Patricia, Mankilam', '8100', NULL, 'Cash On Delivery', 'Cash On Delivery', NULL, 'Usd', 13500.00, NULL, 'EOS74476717', '19 September 2023', 'September', '2023', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '2023-09-19 07:08:03', NULL),
-(15, 3, 3, 4, 5, 'User', 'isrwabina@addu.edu.ph', '09268827283', 'Villa Patricia, Mankilam', '8100', NULL, 'card_1NsJB5JyMbg1UYGzy6QYkTrI', 'Stripe', 'txn_3NsJB7JyMbg1UYGz1wWtUrx9', 'usd', 7843.00, '650a86415402c', 'EOS39676552', '20 September 2023', 'September', '2023', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '2023-09-19 21:42:29', NULL),
-(16, 3, 3, 4, 5, 'User', 'isrwabina@addu.edu.ph', '09268827283', 'Villa Patricia, Mankilam', '8100', NULL, 'card_1NsPQ0JyMbg1UYGzFymGaWxG', 'Stripe', 'txn_3NsPQ1JyMbg1UYGz1Mi9yMIB', 'usd', 2931.00, '650ae3f5c42d2', 'EOS45455836', '20 September 2023', 'September', '2023', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '2023-09-20 04:22:15', NULL),
-(17, 3, 3, 4, 5, 'User', 'isrwabina@addu.edu.ph', '09268827283', 'Villa Patricia, Mankilam', '8100', NULL, 'card_1NsPReJyMbg1UYGzVtoFveDn', 'Stripe', 'txn_3NsPRfJyMbg1UYGz0ct8MIM5', 'usd', 2931.00, '650ae45bbbfe5', 'EOS25223996', '20 September 2023', 'September', '2023', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'pending', '2023-09-20 04:23:57', NULL),
-(18, 3, 3, 4, 5, 'User', 'isrwabina@addu.edu.ph', '09268827283', 'Villa Patricia, Mankilam', '8100', NULL, 'card_1NtLpUJyMbg1UYGz9u1fGePw', 'Stripe', 'txn_3NtLpVJyMbg1UYGz0CdismzZ', 'usd', 6003.00, '650e510884819', 'EOS24051735', '23 September 2023', 'September', '2023', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'delivered', '2023-09-22 18:44:27', NULL),
-(19, 3, 3, 4, 5, 'User', 'ivansamwabina@gmail.com', '09268827283', 'Villa Patricia, Mankilam', '8100', NULL, 'card_1NtSkmJyMbg1UYGzABPcz8Zo', 'Stripe', 'txn_3NtSknJyMbg1UYGz0iWu9Pqk', 'usd', 1395.00, '650eb90095c70', 'EOS97434962', '23 September 2023', 'September', '2023', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'processing', '2023-09-23 02:08:03', NULL),
-(20, 3, 3, 4, 5, 'User', 'isrwabina@addu.edu.ph', '09268827283', 'Villa Patricia, Mankilam', '8100', NULL, 'card_1NtSnKJyMbg1UYGzvKTZ0WLM', 'Stripe', 'txn_3NtSnLJyMbg1UYGz1PCged2k', 'usd', 4500.00, '650eb99ebd9e1', 'EOS20715107', '23 September 2023', 'September', '2023', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'confirmed', '2023-09-23 02:10:40', NULL);
+INSERT INTO `orders` (`id`, `user_id`, `division_id`, `district_id`, `state_id`, `name`, `email`, `phone`, `address`, `post_code`, `notes`, `payment_type`, `payment_method`, `transaction_id`, `currency`, `amount`, `order_number`, `invoice_no`, `order_date`, `order_month`, `order_year`, `confirmed_date`, `processing_date`, `picked_date`, `shipped_date`, `delivered_date`, `cancel_date`, `return_date`, `return_reason`, `return_order`, `status`, `created_at`, `updated_at`) VALUES
+(1, 3, 3, 4, 5, 'User', 'isrwabina@addu.edu.ph', '09268827283', 'Villa Patricia, Mankilam', '8100', 'testing', 'card_1NrBp4JyMbg1UYGzmOuVni4y', 'Stripe', 'txn_3NrBp5JyMbg1UYGz0KL9HYiz', 'usd', 4543.00, '650674d906c3a', 'EOS33983577', '17 September 2023', 'September', '2023', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', 'pending', '2023-09-16 19:39:06', NULL),
+(2, 3, 3, 4, 5, 'User', 'isrwabina@addu.edu.ph', '09268827283', 'Villa Patricia, Mankilam', '8100', 'test 2', 'card_1NrDEdJyMbg1UYGzCB7FZefy', 'Stripe', 'txn_3NrDEhJyMbg1UYGz1vd5mDkG', 'usd', 391.00, '65068a0ce4270', 'EOS80954915', '17 September 2023', 'September', '2023', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', 'confirm', '2023-09-16 21:09:36', NULL),
+(3, 3, 3, 4, 5, 'User', 'isrwabina@addu.edu.ph', '09268827283', 'Villa Patricia, Mankilam', '8100', NULL, 'card_1NrVHpJyMbg1UYGz8hLU46kG', 'Stripe', 'txn_3NrVHrJyMbg1UYGz0yDMSYh2', 'usd', 4565.00, '6507991abd0f3', 'EOS69039541', '18 September 2023', 'September', '2023', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', 'pending', '2023-09-17 16:26:04', NULL),
+(4, 3, 3, 4, 6, 'User', 'isrwabina@addu.edu.ph', '09268827283', 'Villa Patricia, Mankilam', '8100', NULL, 'card_1NrciOJyMbg1UYGzvGRH5hqT', 'Stripe', 'txn_3NrciQJyMbg1UYGz1BsGs5ew', 'usd', 1919.00, '650808a55b760', 'EOS75209830', '18 September 2023', 'September', '2023', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', 'pending', '2023-09-18 00:22:02', NULL),
+(5, 3, 3, 4, 6, 'User', 'isrwabina@addu.edu.ph', '09268827283', 'Villa Patricia, Mankilam', '8100', NULL, 'card_1NrdzuJyMbg1UYGzpI5vPIS2', 'Stripe', 'txn_3NrdzwJyMbg1UYGz085cSyrF', 'usd', 3007.00, '65081be80958c', 'EOS41183076', '18 September 2023', 'September', '2023', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', 'pending', '2023-09-18 01:44:09', NULL),
+(6, 3, 3, 4, 6, 'User', 'isrwabina@addu.edu.ph', '09268827283', 'Villa Patricia, Mankilam', '8100', NULL, 'card_1NreBXJyMbg1UYGzkdllh7h6', 'Stripe', 'txn_3NreBZJyMbg1UYGz1JHftVzB', 'usd', 2931.00, '65081eb8e07c2', 'EOS56658583', '18 September 2023', 'September', '2023', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', 'pending', '2023-09-18 01:56:10', NULL),
+(7, 3, 3, 4, 5, 'User', 'isrwabina@addu.edu.ph', '09268827283', 'Villa Patricia, Mankilam', '8100', 'cash on delivery testing', 'Cash On Delivery', 'Cash On Delivery', NULL, 'Usd', 1781.00, NULL, 'EOS99218803', '19 September 2023', 'September', '2023', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', 'confirm', '2023-09-19 06:10:51', NULL),
+(8, 3, 3, 4, 6, 'User', 'isrwabina@addu.edu.ph', '09268827283', 'Villa Patricia, Mankilam', '8100', NULL, 'card_1Ns5HgJyMbg1UYGz3FOyXPGU', 'Stripe', 'txn_3Ns5HhJyMbg1UYGz1hwIVxp2', 'usd', 3228.00, '6509b5a0e50e7', 'EOS30324233', '19 September 2023', 'September', '2023', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', 'pending', '2023-09-19 06:52:20', NULL),
+(9, 3, 3, 4, 6, 'User', 'isrwabina@addu.edu.ph', '09268827283', 'Villa Patricia, Mankilam', '8100', NULL, 'card_1Ns5IqJyMbg1UYGzAWpi32Lx', 'Stripe', 'txn_3Ns5IsJyMbg1UYGz1rK8w5eF', 'usd', 3228.00, '6509b5e98b913', 'EOS44460247', '19 September 2023', 'September', '2023', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', 'pending', '2023-09-19 06:53:30', NULL),
+(10, 3, 3, 4, 6, 'User', 'isrwabina@addu.edu.ph', '09268827283', 'Villa Patricia, Mankilam', '8100', NULL, 'card_1Ns5MCJyMbg1UYGzkfHhFGxN', 'Stripe', 'txn_3Ns5MDJyMbg1UYGz1nLv0uya', 'usd', 3228.00, '6509b6b8979ec', 'EOS94286545', '19 September 2023', 'September', '2023', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', 'pending', '2023-09-19 06:56:58', NULL),
+(11, 3, 3, 4, 5, 'User', 'testing@gmail.com', '09268827283', 'Villa Patricia, Mankilam', '8100', NULL, 'card_1Ns5PkJyMbg1UYGzNzXGIzuX', 'Stripe', 'txn_3Ns5PlJyMbg1UYGz0tuKIeEt', 'usd', 4467.00, '6509b7951ada5', 'EOS31316463', '19 September 2023', 'September', '2023', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', 'pending', '2023-09-19 07:00:38', NULL),
+(12, 3, 3, 4, 5, 'User', 'testing@gmail.com', '09268827283', 'Villa Patricia, Mankilam', '8100', NULL, 'card_1Ns5QgJyMbg1UYGzBRYoeNS0', 'Stripe', 'txn_3Ns5QhJyMbg1UYGz0q4Lovln', 'usd', 4467.00, '6509b7ceec3e4', 'EOS46254023', '19 September 2023', 'September', '2023', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', 'pending', '2023-09-19 07:01:36', NULL),
+(13, 3, 3, 4, 6, 'User', 'isrwabina@addu.edu.ph', '09268827283', 'Villa Patricia, Mankilam', '8100', NULL, 'Cash On Delivery', 'Cash On Delivery', NULL, 'Usd', 13500.00, NULL, 'EOS81750000', '19 September 2023', 'September', '2023', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', 'pending', '2023-09-19 07:06:44', NULL),
+(14, 3, 3, 4, 6, 'User', 'isrwabina@addu.edu.ph', '09268827283', 'Villa Patricia, Mankilam', '8100', NULL, 'Cash On Delivery', 'Cash On Delivery', NULL, 'Usd', 13500.00, NULL, 'EOS74476717', '19 September 2023', 'September', '2023', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', 'pending', '2023-09-19 07:08:03', NULL),
+(15, 3, 3, 4, 5, 'User', 'isrwabina@addu.edu.ph', '09268827283', 'Villa Patricia, Mankilam', '8100', NULL, 'card_1NsJB5JyMbg1UYGzy6QYkTrI', 'Stripe', 'txn_3NsJB7JyMbg1UYGz1wWtUrx9', 'usd', 7843.00, '650a86415402c', 'EOS39676552', '20 September 2023', 'September', '2023', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', 'pending', '2023-09-19 21:42:29', NULL),
+(16, 3, 3, 4, 5, 'User', 'isrwabina@addu.edu.ph', '09268827283', 'Villa Patricia, Mankilam', '8100', NULL, 'card_1NsPQ0JyMbg1UYGzFymGaWxG', 'Stripe', 'txn_3NsPQ1JyMbg1UYGz1Mi9yMIB', 'usd', 2931.00, '650ae3f5c42d2', 'EOS45455836', '20 September 2023', 'September', '2023', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', 'processing', '2023-09-20 04:22:15', '2023-10-11 18:39:54'),
+(17, 3, 3, 4, 5, 'User', 'isrwabina@addu.edu.ph', '09268827283', 'Villa Patricia, Mankilam', '8100', NULL, 'card_1NsPReJyMbg1UYGzVtoFveDn', 'Stripe', 'txn_3NsPRfJyMbg1UYGz0ct8MIM5', 'usd', 2931.00, '650ae45bbbfe5', 'EOS25223996', '20 September 2023', 'September', '2023', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', 'processing', '2023-09-20 04:23:57', '2023-10-11 18:35:48'),
+(18, 3, 3, 4, 5, 'User', 'isrwabina@addu.edu.ph', '09268827283', 'Villa Patricia, Mankilam', '8100', NULL, 'card_1NtLpUJyMbg1UYGz9u1fGePw', 'Stripe', 'txn_3NtLpVJyMbg1UYGz0CdismzZ', 'usd', 6003.00, '650e510884819', 'EOS24051735', '23 September 2023', 'September', '2023', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', 'delivered', '2023-09-22 18:44:27', NULL),
+(19, 3, 3, 4, 5, 'User', 'ivansamwabina@gmail.com', '09268827283', 'Villa Patricia, Mankilam', '8100', NULL, 'card_1NtSkmJyMbg1UYGzABPcz8Zo', 'Stripe', 'txn_3NtSknJyMbg1UYGz0iWu9Pqk', 'usd', 1395.00, '650eb90095c70', 'EOS97434962', '23 September 2023', 'September', '2023', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', 'processing', '2023-09-23 02:08:03', NULL),
+(20, 3, 3, 4, 5, 'User', 'isrwabina@addu.edu.ph', '09268827283', 'Villa Patricia, Mankilam', '8100', NULL, 'card_1NtSnKJyMbg1UYGzvKTZ0WLM', 'Stripe', 'txn_3NtSnLJyMbg1UYGz1PCged2k', 'usd', 4500.00, '650eb99ebd9e1', 'EOS20715107', '23 September 2023', 'September', '2023', NULL, NULL, NULL, NULL, NULL, NULL, '29 October 2023', 'wrong product', '1', 'delivered', '2023-09-23 02:10:40', '2023-10-29 03:36:24'),
+(21, 3, 3, 4, 5, 'User', 'isrwabina@addu.edu.ph', '09268827283', 'Villa Patricia, Mankilam', '8100', NULL, 'card_1NyTJqJyMbg1UYGz8fsf3oHL', 'Stripe', 'txn_3NyTJrJyMbg1UYGz1ecu6mAh', 'usd', 4500.00, '6520f0560f5c6', 'EOS49670143', '07 October 2023', 'October', '2023', NULL, NULL, NULL, NULL, NULL, NULL, '29 October 2023', 'naay guba dol', '2', 'delivered', '2023-10-06 21:44:57', '2023-10-29 03:36:33'),
+(22, 3, 3, 4, 6, 'User', 'isrwabina@addu.edu.ph', '09268827283', 'Villa Patricia, Mankilam', '8100', NULL, 'card_1O2kBTJyMbg1UYGzQT5Pc4bo', 'Stripe', 'txn_3O2kBUJyMbg1UYGz02UbYnPG', 'usd', 4500.00, '65307973658ce', 'EOS87415929', '19 October 2023', 'October', '2023', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', 'pending', '2023-10-18 16:33:58', NULL),
+(23, 3, 3, 4, 6, 'User', 'isrwabina@addu.edu.ph', '09268827283', 'Villa Patricia, Mankilam', '8100', NULL, 'card_1O2lKkJyMbg1UYGzonMf1jr4', 'Stripe', 'txn_3O2lKlJyMbg1UYGz002TsJad', 'usd', 4500.00, '65308ab6bd186', 'EOS74441710', '19 October 2023', 'October', '2023', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', 'confirm', '2023-10-18 17:47:36', '2023-10-18 17:54:39'),
+(24, 3, 3, 4, 6, 'User', 'isrwabina@addu.edu.ph', '09268827283', 'Villa Patricia, Mankilam', '8100', NULL, 'card_1O4xEwJyMbg1UYGzXeg7g2jq', 'Stripe', 'txn_3O4xExJyMbg1UYGz181HFLu4', 'usd', 4500.00, '6538836ee3f37', 'EOS60336363', '25 October 2023', 'October', '2023', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', 'pending', '2023-10-24 18:54:41', NULL),
+(25, 3, 3, 4, 6, 'User', 'isrwabina@addu.edu.ph', '09268827283', 'Villa Patricia, Mankilam', '8100', NULL, 'card_1O4xGLJyMbg1UYGzaO5UQtL9', 'Stripe', 'txn_3O4xGMJyMbg1UYGz0lxTuldL', 'usd', 9000.00, '653883c64f4d4', 'EOS81590566', '25 October 2023', 'October', '2023', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', 'pending', '2023-10-24 18:56:07', NULL),
+(26, 3, 3, 4, 6, 'User', 'isrwabina@addu.edu.ph', '09268827283', 'Villa Patricia, Mankilam', '8100', NULL, 'Cash On Delivery', 'Cash On Delivery', NULL, 'Usd', 5200.00, NULL, 'EOS49249646', '30 October 2023', 'October', '2023', NULL, NULL, NULL, NULL, NULL, NULL, '30 October 2023', 'di ko ganahan dol xD', '2', 'delivered', '2023-10-30 01:26:43', '2023-10-30 01:48:21');
 
 -- --------------------------------------------------------
 
@@ -356,7 +363,13 @@ INSERT INTO `order_items` (`id`, `order_id`, `product_id`, `vendor_id`, `color`,
 (28, 18, 2, NULL, 'Red', '5', '1', 4500.00, '2023-09-22 18:44:32', NULL),
 (29, 18, 3, '16', NULL, NULL, '3', 4955.00, '2023-09-22 18:44:32', NULL),
 (30, 19, 2, NULL, 'Red', '5', '1', 4500.00, '2023-09-23 02:08:12', NULL),
-(31, 20, 2, NULL, 'Red', '5', '1', 4500.00, '2023-09-23 02:10:47', NULL);
+(31, 20, 2, NULL, 'Red', '5', '1', 4500.00, '2023-09-23 02:10:47', NULL),
+(32, 21, 2, NULL, 'Red', '5', '1', 4500.00, '2023-10-06 21:45:02', NULL),
+(33, 22, 2, NULL, 'Red', '5', '1', 4500.00, '2023-10-18 16:34:04', NULL),
+(34, 23, 2, NULL, 'Red', '5', '1', 4500.00, '2023-10-18 17:47:40', NULL),
+(35, 24, 2, NULL, 'Red', '5', '1', 4500.00, '2023-10-24 18:54:47', NULL),
+(36, 25, 2, NULL, 'Red', '5', '2', 4500.00, '2023-10-24 18:56:12', NULL),
+(37, 26, 1, '2', 'white', '7', '1', 5200.00, '2023-10-30 01:26:49', NULL);
 
 -- --------------------------------------------------------
 
@@ -582,6 +595,7 @@ CREATE TABLE `users` (
   `vendor_short_info` text DEFAULT NULL,
   `role` enum('admin','user','vendor') NOT NULL DEFAULT 'user',
   `status` enum('active','inactive') NOT NULL DEFAULT 'active',
+  `last_seen` varchar(255) NOT NULL,
   `remember_token` varchar(100) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -591,14 +605,14 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `username`, `email`, `email_verified_at`, `password`, `photo`, `phone`, `address`, `vendor_join`, `vendor_short_info`, `role`, `status`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Admin', 'admin', 'admin@gmail.com', NULL, '$2y$10$9TWAk7kJy9mIMiPOnPJQwuJwqMKEUvgvN5DjDOLz8EDsCSYyDVTji', NULL, NULL, NULL, NULL, NULL, 'admin', 'active', NULL, NULL, '2023-07-12 18:23:29'),
-(2, 'Nest Food.,Ltd', 'vendor', 'vendor@gmail.com', NULL, '$2y$10$PyOzt65.aX4LMLGUvz/5k.tV4C9SHFV3XZsOYPL2yIHR7ZV94hTLG', '202307130242vendor-15.png', '540-025-124553', '5171 W Campbell Ave undefined, Utah 53127 United States', '2023', 'Got a smooth, buttery spread in your fridge? Chances are good that it\'s Good Chef. This brand made Lionto\'s list of the most popular grocery brands across the country.', 'vendor', 'active', NULL, NULL, '2023-09-22 21:01:43'),
-(3, 'User', 'user', 'user@gmail.com', NULL, '$2y$10$6LuePCajUVQ/KqNz761s/.X29FfsE.fy80EEgD3Hr1p4MmLGwVW5e', '202307150419cat-3.png', '09268827283', NULL, NULL, NULL, 'user', 'active', NULL, NULL, '2023-08-10 21:27:48'),
-(15, 'Walton', 'walton', 'walton@gmail.com', NULL, '$2y$10$taOSnwF2xvEOOU4m0jgU3OAhUomxZAqWyFPPDu0asbK53AiZXNAYi', NULL, '0926882', NULL, '2022', NULL, 'vendor', 'active', NULL, NULL, '2023-08-07 01:25:38'),
-(16, 'Sonny', 'sonny', 'sonny@gmail.com', NULL, '$2y$10$8ssYS3a5wuSRWDiiiFIkXOsU0NSTCXowdV4FFnOOIirq72YuGs0iG', NULL, '092648', NULL, '2022', NULL, 'vendor', 'active', NULL, NULL, '2023-07-18 02:23:47'),
-(17, 'Expert Fasion', 'expert', 'expert@gmail.com', NULL, '$2y$10$4G2W8t2BLbvrakZgJk8W/e54VSjX8eiSbjuDHaT/zyDpumgaCbBDm', NULL, '013564', NULL, '2022', NULL, 'vendor', 'active', NULL, NULL, '2023-07-28 18:56:16'),
-(18, 'ivan', NULL, 'ivansamwabina@gmail.com', NULL, '$2y$10$b3Qgk0vXpav9n31KyGWV/.4CLZEvd.klYT936MxLmZrVwRQcdinlW', NULL, NULL, NULL, NULL, NULL, 'user', 'active', NULL, '2023-08-11 03:05:21', '2023-08-11 03:05:21');
+INSERT INTO `users` (`id`, `name`, `username`, `email`, `email_verified_at`, `password`, `photo`, `phone`, `address`, `vendor_join`, `vendor_short_info`, `role`, `status`, `last_seen`, `remember_token`, `created_at`, `updated_at`) VALUES
+(1, 'Admin', 'admin', 'admin@gmail.com', NULL, '$2y$10$9TWAk7kJy9mIMiPOnPJQwuJwqMKEUvgvN5DjDOLz8EDsCSYyDVTji', NULL, NULL, NULL, NULL, NULL, 'admin', 'active', '2023-11-01 08:27:55', NULL, NULL, '2023-11-01 00:27:55'),
+(2, 'Nest Food.,Ltd', 'vendor', 'vendor@gmail.com', NULL, '$2y$10$PyOzt65.aX4LMLGUvz/5k.tV4C9SHFV3XZsOYPL2yIHR7ZV94hTLG', '202307130242vendor-15.png', '540-025-124553', '5171 W Campbell Ave undefined, Utah 53127 United States', '2023', 'Got a smooth, buttery spread in your fridge? Chances are good that it\'s Good Chef. This brand made Lionto\'s list of the most popular grocery brands across the country.', 'vendor', 'active', '2023-11-01 08:28:18', NULL, NULL, '2023-11-01 00:28:18'),
+(3, 'User', 'user', 'user@gmail.com', NULL, '$2y$10$6LuePCajUVQ/KqNz761s/.X29FfsE.fy80EEgD3Hr1p4MmLGwVW5e', '202307150419cat-3.png', '09268827283', NULL, NULL, NULL, 'user', 'active', '2023-11-01 08:24:26', NULL, NULL, '2023-11-01 00:24:26'),
+(15, 'Walton', 'walton', 'walton@gmail.com', NULL, '$2y$10$taOSnwF2xvEOOU4m0jgU3OAhUomxZAqWyFPPDu0asbK53AiZXNAYi', NULL, '0926882', NULL, '2022', NULL, 'vendor', 'active', '', NULL, NULL, '2023-08-07 01:25:38'),
+(16, 'Sonny', 'sonny', 'sonny@gmail.com', NULL, '$2y$10$8ssYS3a5wuSRWDiiiFIkXOsU0NSTCXowdV4FFnOOIirq72YuGs0iG', NULL, '092648', NULL, '2022', NULL, 'vendor', 'active', '', NULL, NULL, '2023-07-18 02:23:47'),
+(17, 'Expert Fasion', 'expert', 'expert@gmail.com', NULL, '$2y$10$4G2W8t2BLbvrakZgJk8W/e54VSjX8eiSbjuDHaT/zyDpumgaCbBDm', NULL, '013564', NULL, '2022', NULL, 'vendor', 'active', '', NULL, NULL, '2023-07-28 18:56:16'),
+(18, 'ivan', NULL, 'ivansamwabina@gmail.com', NULL, '$2y$10$b3Qgk0vXpav9n31KyGWV/.4CLZEvd.klYT936MxLmZrVwRQcdinlW', NULL, NULL, NULL, NULL, NULL, 'user', 'active', '2023-11-01 08:26:30', NULL, '2023-08-11 03:05:21', '2023-11-01 00:26:30');
 
 -- --------------------------------------------------------
 
@@ -810,13 +824,13 @@ ALTER TABLE `multi_images`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `order_items`
 --
 ALTER TABLE `order_items`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
