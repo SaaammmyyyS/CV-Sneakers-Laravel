@@ -31,7 +31,7 @@ class CategoryController extends Controller
         ]);
 
         $notification = array(
-            'message' => 'Brand Inserted Successfully',
+            'message' => 'Category Inserted Successfully',
             'alert-type' => 'success'
         );
 
