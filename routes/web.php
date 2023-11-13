@@ -176,6 +176,9 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('/product/inactive/{id}', 'ProductInactive')->name('product.inactive');
         Route::get('/product/active/{id}', 'ProductActive')->name('product.active');
         Route::get('/delete/product/{id}', 'DeleteProduct')->name('delete.product');
+
+        // For Product Stock
+        Route::get('/product/stock', 'ProductStock')->name('product.stock');
     });
 
     // Slider All Routes
@@ -410,6 +413,10 @@ Route::middleware(['auth', 'role:user'])->group(function () {
         Route::get('/user/invoice_download/{order_id}', 'UserInvoiceDownload')->name('user.invoice_download');
         Route::post('/return/order/{order_id}', 'ReturnOrder')->name('return.order');
         Route::get('/return/order/page', 'ReturnOrderPage')->name('return.order.page');
+
+        // Order Tracking
+        Route::get('/user/track/order', 'UserTrackOrder')->name('user.track.order');
+        Route::post('/order/tracking', 'OrderTracking')->name('order.tracking');
 
     });
 
