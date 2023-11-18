@@ -36,6 +36,46 @@
             <a href="javascript:;" class="has-arrow">
                 <div class="parent-icon"><i class="bx bx-category"></i>
                 </div>
+                <div class="menu-title">Stock Manage</div>
+            </a>
+            <ul>
+                <li><a href="{{route('product.stock')}}"><i class="bx bx-right-arrow-alt"></i>Product Stock</a></li>
+                <li><a href="{{route('stock.in')}}"><i class="bx bx-right-arrow-alt"></i>Stock in</a></li>
+                <li><a href="{{route('stock.in.history')}}"><i class="bx bx-right-arrow-alt"></i>Stock in History</a></li>
+                <li><a href="{{route('stock.out.history')}}"><i class="bx bx-right-arrow-alt"></i>Stock out History</a></li>
+            </ul>
+
+        </li>
+
+        <li>
+            <a href="javascript:;" class="has-arrow">
+                <div class="parent-icon"><i class="bx bx-category"></i>
+                </div>
+                <div class="menu-title">Product Manage</div>
+            </a>
+            <ul>
+                <li> <a href="{{route('all.product')}}"><i class="bx bx-right-arrow-alt"></i>All Product</a></li>
+                <li> <a href="{{route('add.product')}}"><i class="bx bx-right-arrow-alt"></i>Add Product</a></li>
+
+            </ul>
+        </li>
+        <li>
+            <a href="javascript:;" class="has-arrow">
+                <div class="parent-icon"><i class='bx bx-cart'></i>
+                </div>
+                <div class="menu-title">Order Manage</div>
+            </a>
+            <ul>
+                <li> <a href="{{route('admin.pending.order')}}"><i class="bx bx-right-arrow-alt"></i>Pending Orders</a></li>
+                <li> <a href="{{route('admin.confirmed.order')}}"><i class="bx bx-right-arrow-alt"></i>Confirmed Orders</a></li>
+                <li> <a href="{{route('admin.processing.order')}}"><i class="bx bx-right-arrow-alt"></i>Processing Orders</a></li>
+                <li> <a href="{{route('admin.delivered.order')}}"><i class="bx bx-right-arrow-alt"></i>Delivered Orders</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="javascript:;" class="has-arrow">
+                <div class="parent-icon"><i class="bx bx-category"></i>
+                </div>
                 <div class="menu-title">Category</div>
             </a>
             <ul>
@@ -54,19 +94,6 @@
             <ul>
                 <li> <a href="{{route('all.subcategory')}}"><i class="bx bx-right-arrow-alt"></i>All SubCategory</a></li>
                 <li> <a href="{{route('add.subcategory')}}"><i class="bx bx-right-arrow-alt"></i>Add SubCategory</a></li>
-
-            </ul>
-        </li>
-
-        <li>
-            <a href="javascript:;" class="has-arrow">
-                <div class="parent-icon"><i class="bx bx-category"></i>
-                </div>
-                <div class="menu-title">Product Manage</div>
-            </a>
-            <ul>
-                <li> <a href="{{route('all.product')}}"><i class="bx bx-right-arrow-alt"></i>All Product</a></li>
-                <li> <a href="{{route('add.product')}}"><i class="bx bx-right-arrow-alt"></i>Add Product</a></li>
 
             </ul>
         </li>
@@ -136,19 +163,7 @@
                 <li> <a href="{{route('active.vendor')}}"><i class="bx bx-right-arrow-alt"></i>Active Vendor</a></li>
             </ul>
         </li>
-        <li>
-            <a href="javascript:;" class="has-arrow">
-                <div class="parent-icon"><i class='bx bx-cart'></i>
-                </div>
-                <div class="menu-title">Order Manage</div>
-            </a>
-            <ul>
-                <li> <a href="{{route('admin.pending.order')}}"><i class="bx bx-right-arrow-alt"></i>Pending Orders</a></li>
-                <li> <a href="{{route('admin.confirmed.order')}}"><i class="bx bx-right-arrow-alt"></i>Confirmed Orders</a></li>
-                <li> <a href="{{route('admin.processing.order')}}"><i class="bx bx-right-arrow-alt"></i>Processing Orders</a></li>
-                <li> <a href="{{route('admin.delivered.order')}}"><i class="bx bx-right-arrow-alt"></i>Delivered Orders</a></li>
-            </ul>
-        </li>
+
 
         <li>
             <a href="javascript:;" class="has-arrow">
@@ -197,56 +212,6 @@
                 <li> <a href="{{route('admin.blog.post')}}"><i class="bx bx-right-arrow-alt"></i>All Blog Post</a></li>
             </ul>
 
-        </li>
-        <li>
-            <a href="javascript:;" class="has-arrow">
-                <div class="parent-icon"><i class="bx bx-category"></i>
-                </div>
-                <div class="menu-title">Stock Manage</div>
-            </a>
-            <ul>
-                <li> <a href="{{route('product.stock')}}"><i class="bx bx-right-arrow-alt"></i>Product Stock</a></li>
-            </ul>
-
-        </li>
-        <li>
-            <a class="has-arrow" href="javascript:;">
-                <div class="parent-icon"> <i class="bx bx-donate-blood"></i>
-                </div>
-                <div class="menu-title">Icons</div>
-            </a>
-            <ul>
-                <li> <a href="icons-line-icons.html"><i class="bx bx-right-arrow-alt"></i>Line Icons</a>
-                </li>
-                <li> <a href="icons-boxicons.html"><i class="bx bx-right-arrow-alt"></i>Boxicons</a>
-                </li>
-                <li> <a href="icons-feather-icons.html"><i class="bx bx-right-arrow-alt"></i>Feather Icons</a>
-                </li>
-            </ul>
-        </li>
-
-        <li class="menu-label">Others</li>
-        <li>
-            <a class="has-arrow" href="javascript:;">
-                <div class="parent-icon"><i class="bx bx-line-chart"></i>
-                </div>
-                <div class="menu-title">Charts</div>
-            </a>
-            <ul class="mm-collapse">
-                <li> <a href="charts-apex-chart.html"><i class="bx bx-right-arrow-alt"></i>Apex</a>
-                </li>
-                <li> <a href="charts-chartjs.html"><i class="bx bx-right-arrow-alt"></i>Chartjs</a>
-                </li>
-                <li> <a href="charts-highcharts.html"><i class="bx bx-right-arrow-alt"></i>Highcharts</a>
-                </li>
-            </ul>
-        </li>
-        <li>
-            <a href="https://themeforest.net/user/codervent" target="_blank">
-                <div class="parent-icon"><i class="bx bx-support"></i>
-                </div>
-                <div class="menu-title">Support</div>
-            </a>
         </li>
     </ul>
     <!--end navigation-->

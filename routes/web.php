@@ -179,7 +179,11 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 
         // For Product Stock
         Route::get('/product/stock', 'ProductStock')->name('product.stock');
-        Route::get('/stock/in', 'StockIn')->name('stock/in');
+        Route::get('/stock/in', 'StockIn')->name('stock.in');
+        Route::post('/add/stock', 'AddStock')->name('add.stock');
+        Route::get('/stock/in/history', 'StockInHistory')->name('stock.in.history');
+        Route::get('/stock/out/history', 'StockOutHistory')->name('stock.out.history');
+        Route::get('/stock/out/details/{order_id}', 'StockOutDetails')->name('stock.out.details');
     });
 
     // Slider All Routes

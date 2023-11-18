@@ -3,11 +3,14 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Inventory;
 use App\Models\Order;
 use App\Models\OrderItem;
 use App\Models\Product;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class OrderController extends Controller
@@ -63,6 +66,17 @@ class OrderController extends Controller
 
     public function ProcessingToDeliver($order_id){
         $product = OrderItem::where('order_id', $order_id)->get();
+        $order = Order::findOrFail($order_id);
+
+        Inventory::insert([
+            "admin_id" => Auth::id(),
+            "order_id" => $order_id,
+            "total_price" => $order->amount,
+            "invoice_no" => $order->invoice_no,
+            "type" => "stock out",
+            "stock_out_date" => Carbon::now(),
+        ]);
+
         foreach ($product as $item) {
             Product::where('id', $item->product_id)->update([
                 'product_qty' => DB::raw('product_qty-'.$item->qty)

@@ -5,12 +5,16 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use App\Models\Brand;
 use App\Models\Category;
+use App\Models\Inventory;
 use App\Models\MultiImage;
+use App\Models\Order;
+use App\Models\OrderItem;
 use App\Models\Product;
 use App\Models\SubCategory;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Intervention\Image\Facades\Image;
 
 class ProductController extends Controller
@@ -249,6 +253,58 @@ class ProductController extends Controller
     } // End Method
 
     public function StockIn(){
-        return view('backend.product.stock_in');
+        $products = Product::latest()->get();
+        $activeVendor = User::where('status', 'active')->where('role', 'vendor')->latest()->get();
+        return view('backend.product.stock_in', compact('products', 'activeVendor'));
+    } // End Method
+
+    public function AddStock(Request $request){
+        $product = $request->product_id;
+
+        $qty = Product::findOrFail($product)->product_qty + $request->product_qty;
+        $product_data = Product::findOrFail($product);
+        $final_quantity = $product_data[$request->product_size] + $request->product_qty;
+
+
+
+        Product::findOrFail($product)->update([
+            "product_qty" => $qty,
+            $request->product_size => $final_quantity,
+            "stock_in_date" => Carbon::now(),
+        ]);
+
+        Inventory::insert([
+            'admin_id' => Auth::id(),
+            'product_id' => $product,
+            'quantity' => $request->product_qty,
+            'price' => $request->selling_price,
+            'total_price' => $product_data->selling_price * $request->product_qty,
+            'type' => "stock in",
+            'stock_in_date' => Carbon::now(),
+        ]);
+
+        $notification = array(
+            'message' => ' Successfully',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->back()->with($notification);
+    }
+
+    public function StockInHistory(){
+        $products = Inventory::where('type', 'stock in')->orderBy('id', 'DESC')->get();
+        return view('backend.product.stock_in_history', compact('products'));
+    } // End Method
+
+    public function StockOutHistory(){
+        $orders = Inventory::where('type', 'stock out')->orderBy('id', 'DESC')->get();
+        return view('backend.product.stock_out_history', compact('orders'));
+    } // End Method
+
+    public function StockOutDetails($order_id){
+        $order = Order::with('division', 'district', 'state', 'user')->where('id', $order_id)->first();
+        $orderItem = OrderItem::with('product')->where('order_id', $order_id)->orderBy('id', 'DESC')->get();
+
+        return view('backend.product.stock_out_details', compact('order', 'orderItem'));
     } // End Method
 }
