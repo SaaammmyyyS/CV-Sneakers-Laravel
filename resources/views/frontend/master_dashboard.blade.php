@@ -768,7 +768,7 @@
                                     : `<h6 class="text-body">${value.options.size}</h6>`
                                 }
                             </td>
-                            <td class="text-center detail-info" data-title="Stock">
+                            <td class="detail-info" data-title="Stock">
                                 <div class="detail-extralink mr-15">
                                     <div class="detail-qty border radius">
                                         <a type="submit" class="qty-down" id="${value.rowId}" onclick="cartDecrement(this.id)"><i class="fi-rs-angle-small-down"></i></a>
@@ -780,7 +780,7 @@
                             <td class="price" data-title="Price">
                                 <h6 class="text-brand">$${value.subtotal} </h6>
                             </td>
-                            <td class="action text-center" data-title="Remove"><a type="submit" id="${value.rowId}" onclick="cartRemove(this.id)" class="text-body"><i class="fi-rs-trash"></i></a></td>
+                            <td class="action" data-title="Remove"><a type="submit" id="${value.rowId}" onclick="cartRemove(this.id)" class="text-body"><i class="fi-rs-trash"></i></a></td>
                         </tr>`
                     });
 

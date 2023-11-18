@@ -179,6 +179,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 
         // For Product Stock
         Route::get('/product/stock', 'ProductStock')->name('product.stock');
+        Route::get('/stock/in', 'StockIn')->name('stock/in');
     });
 
     // Slider All Routes

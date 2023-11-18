@@ -75,6 +75,7 @@ class AllUserController extends Controller
     public function OrderTracking(Request $request){
         $invoice = $request->code;
         $track = Order::where('invoice_no', $invoice)->first();
+        // $track = Order::where('user_id', Auth::id())->where('invoice_no', $invoice)->first();
 
         if ($track) {
             return view('frontend.tracking.track_order', compact('track'));

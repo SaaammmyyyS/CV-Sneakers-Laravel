@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 02, 2023 at 04:27 AM
+-- Generation Time: Nov 18, 2023 at 05:34 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -44,6 +44,53 @@ INSERT INTO `banners` (`id`, `banner_title`, `banner_url`, `banner_image`, `crea
 (2, 'test', 'https://www.youtube.com/watch?v=mMMm2wx24lc', 'upload/banner/1772405813867754.png', NULL, '2023-07-25 21:10:38'),
 (3, 'test 2', 'testing 2', 'upload/banner/1772458309724565.png', NULL, NULL),
 (4, 'test 3', 'testing 3', 'upload/banner/1772458329449861.png', NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `blog_categories`
+--
+
+CREATE TABLE `blog_categories` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `blog_category_name` varchar(255) NOT NULL,
+  `blog_category_slug` varchar(255) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `blog_categories`
+--
+
+INSERT INTO `blog_categories` (`id`, `blog_category_name`, `blog_category_slug`, `created_at`, `updated_at`) VALUES
+(1, 'Accessories', 'accessories', '2023-11-09 22:27:36', NULL),
+(3, 'Test', 'test', '2023-11-09 22:30:23', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `blog_posts`
+--
+
+CREATE TABLE `blog_posts` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `category_id` int(11) NOT NULL,
+  `post_title` varchar(255) NOT NULL,
+  `post_slug` varchar(255) NOT NULL,
+  `post_image` varchar(255) NOT NULL,
+  `post_short_description` text NOT NULL,
+  `post_long_description` text NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `blog_posts`
+--
+
+INSERT INTO `blog_posts` (`id`, `category_id`, `post_title`, `post_slug`, `post_image`, `post_short_description`, `post_long_description`, `created_at`, `updated_at`) VALUES
+(2, 3, 'test', 'test', 'upload/blog/1782449819438037.png', 'tessssstttt', '<p>TEst 123</p>\r\n<p>&nbsp;</p>', '2023-11-13 03:56:53', '2023-11-13 03:56:59');
 
 -- --------------------------------------------------------
 
@@ -131,7 +178,8 @@ CREATE TABLE `coupons` (
 INSERT INTO `coupons` (`id`, `coupon_name`, `coupon_discount`, `coupon_validity`, `status`, `created_at`, `updated_at`) VALUES
 (2, 'EZSNEAKERS TESTING', 5, '2023-08-30', 1, '2023-08-18 06:56:27', '2023-08-18 06:56:27'),
 (3, 'TESTING COUPON', 90, '2023-08-20', 1, '2023-08-20 16:57:34', NULL),
-(4, 'ALDOUS', 69, '3000-09-30', 1, '2023-09-05 21:29:18', NULL);
+(4, 'ALDOUS', 69, '3000-09-30', 1, '2023-09-05 21:29:18', NULL),
+(5, 'MYKE', 98, '2027-12-15', 1, '2023-11-15 02:11:55', NULL);
 
 -- --------------------------------------------------------
 
@@ -184,7 +232,9 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (20, '2023_08_19_011032_create_ship_districs_table', 11),
 (21, '2023_08_19_011157_create_ship_states_table', 11),
 (22, '2023_09_16_122134_create_orders_table', 12),
-(23, '2023_09_16_123324_create_order_items_table', 12);
+(23, '2023_09_16_123324_create_order_items_table', 12),
+(24, '2023_11_10_060310_create_blog_categories_table', 13),
+(25, '2023_11_10_060627_create_blog_posts_table', 14);
 
 -- --------------------------------------------------------
 
@@ -301,13 +351,18 @@ INSERT INTO `orders` (`id`, `user_id`, `division_id`, `district_id`, `state_id`,
 (17, 3, 3, 4, 5, 'User', 'isrwabina@addu.edu.ph', '09268827283', 'Villa Patricia, Mankilam', '8100', NULL, 'card_1NsPReJyMbg1UYGzVtoFveDn', 'Stripe', 'txn_3NsPRfJyMbg1UYGz0ct8MIM5', 'usd', 2931.00, '650ae45bbbfe5', 'EOS25223996', '20 September 2023', 'September', '2023', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', 'processing', '2023-09-20 04:23:57', '2023-10-11 18:35:48'),
 (18, 3, 3, 4, 5, 'User', 'isrwabina@addu.edu.ph', '09268827283', 'Villa Patricia, Mankilam', '8100', NULL, 'card_1NtLpUJyMbg1UYGz9u1fGePw', 'Stripe', 'txn_3NtLpVJyMbg1UYGz0CdismzZ', 'usd', 6003.00, '650e510884819', 'EOS24051735', '23 September 2023', 'September', '2023', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', 'delivered', '2023-09-22 18:44:27', NULL),
 (19, 3, 3, 4, 5, 'User', 'ivansamwabina@gmail.com', '09268827283', 'Villa Patricia, Mankilam', '8100', NULL, 'card_1NtSkmJyMbg1UYGzABPcz8Zo', 'Stripe', 'txn_3NtSknJyMbg1UYGz0iWu9Pqk', 'usd', 1395.00, '650eb90095c70', 'EOS97434962', '23 September 2023', 'September', '2023', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', 'processing', '2023-09-23 02:08:03', NULL),
-(20, 3, 3, 4, 5, 'User', 'isrwabina@addu.edu.ph', '09268827283', 'Villa Patricia, Mankilam', '8100', NULL, 'card_1NtSnKJyMbg1UYGzvKTZ0WLM', 'Stripe', 'txn_3NtSnLJyMbg1UYGz1PCged2k', 'usd', 4500.00, '650eb99ebd9e1', 'EOS20715107', '23 September 2023', 'September', '2023', NULL, NULL, NULL, NULL, NULL, NULL, '29 October 2023', 'wrong product', '1', 'delivered', '2023-09-23 02:10:40', '2023-10-29 03:36:24'),
+(20, 3, 3, 4, 5, 'User', 'isrwabina@addu.edu.ph', '09268827283', 'Villa Patricia, Mankilam', '8100', NULL, 'card_1NtSnKJyMbg1UYGzvKTZ0WLM', 'Stripe', 'txn_3NtSnLJyMbg1UYGz1PCged2k', 'usd', 4500.00, '650eb99ebd9e1', 'EOS20715107', '23 September 2023', 'September', '2023', NULL, NULL, NULL, NULL, NULL, NULL, '29 October 2023', 'wrong product', '2', 'delivered', '2023-09-23 02:10:40', '2023-11-13 18:22:23'),
 (21, 3, 3, 4, 5, 'User', 'isrwabina@addu.edu.ph', '09268827283', 'Villa Patricia, Mankilam', '8100', NULL, 'card_1NyTJqJyMbg1UYGz8fsf3oHL', 'Stripe', 'txn_3NyTJrJyMbg1UYGz1ecu6mAh', 'usd', 4500.00, '6520f0560f5c6', 'EOS49670143', '07 October 2023', 'October', '2023', NULL, NULL, NULL, NULL, NULL, NULL, '29 October 2023', 'naay guba dol', '2', 'delivered', '2023-10-06 21:44:57', '2023-10-29 03:36:33'),
 (22, 3, 3, 4, 6, 'User', 'isrwabina@addu.edu.ph', '09268827283', 'Villa Patricia, Mankilam', '8100', NULL, 'card_1O2kBTJyMbg1UYGzQT5Pc4bo', 'Stripe', 'txn_3O2kBUJyMbg1UYGz02UbYnPG', 'usd', 4500.00, '65307973658ce', 'EOS87415929', '19 October 2023', 'October', '2023', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', 'pending', '2023-10-18 16:33:58', NULL),
 (23, 3, 3, 4, 6, 'User', 'isrwabina@addu.edu.ph', '09268827283', 'Villa Patricia, Mankilam', '8100', NULL, 'card_1O2lKkJyMbg1UYGzonMf1jr4', 'Stripe', 'txn_3O2lKlJyMbg1UYGz002TsJad', 'usd', 4500.00, '65308ab6bd186', 'EOS74441710', '19 October 2023', 'October', '2023', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', 'confirm', '2023-10-18 17:47:36', '2023-10-18 17:54:39'),
 (24, 3, 3, 4, 6, 'User', 'isrwabina@addu.edu.ph', '09268827283', 'Villa Patricia, Mankilam', '8100', NULL, 'card_1O4xEwJyMbg1UYGzXeg7g2jq', 'Stripe', 'txn_3O4xExJyMbg1UYGz181HFLu4', 'usd', 4500.00, '6538836ee3f37', 'EOS60336363', '25 October 2023', 'October', '2023', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', 'pending', '2023-10-24 18:54:41', NULL),
-(25, 3, 3, 4, 6, 'User', 'isrwabina@addu.edu.ph', '09268827283', 'Villa Patricia, Mankilam', '8100', NULL, 'card_1O4xGLJyMbg1UYGzaO5UQtL9', 'Stripe', 'txn_3O4xGMJyMbg1UYGz0lxTuldL', 'usd', 9000.00, '653883c64f4d4', 'EOS81590566', '25 October 2023', 'October', '2023', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', 'pending', '2023-10-24 18:56:07', NULL),
-(26, 3, 3, 4, 6, 'User', 'isrwabina@addu.edu.ph', '09268827283', 'Villa Patricia, Mankilam', '8100', NULL, 'Cash On Delivery', 'Cash On Delivery', NULL, 'Usd', 5200.00, NULL, 'EOS49249646', '30 October 2023', 'October', '2023', NULL, NULL, NULL, NULL, NULL, NULL, '30 October 2023', 'di ko ganahan dol xD', '2', 'delivered', '2023-10-30 01:26:43', '2023-10-30 01:48:21');
+(25, 3, 3, 4, 6, 'User', 'isrwabina@addu.edu.ph', '09268827283', 'Villa Patricia, Mankilam', '8100', NULL, 'card_1O4xGLJyMbg1UYGzaO5UQtL9', 'Stripe', 'txn_3O4xGMJyMbg1UYGz0lxTuldL', 'usd', 9000.00, '653883c64f4d4', 'EOS81590566', '25 October 2023', 'October', '2023', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', 'confirm', '2023-10-24 18:56:07', '2023-11-01 21:22:30'),
+(26, 3, 3, 4, 6, 'User', 'isrwabina@addu.edu.ph', '09268827283', 'Villa Patricia, Mankilam', '8100', NULL, 'Cash On Delivery', 'Cash On Delivery', NULL, 'Usd', 5200.00, NULL, 'EOS49249646', '30 October 2023', 'October', '2023', NULL, NULL, NULL, NULL, NULL, NULL, '30 October 2023', 'di ko ganahan dol xD', '2', 'delivered', '2023-10-30 01:26:43', '2023-10-30 01:48:21'),
+(27, 3, 3, 4, 5, 'User', 'isrwabina@addu.edu.ph', '09268827283', 'Villa Patricia, Mankilam', '8100', NULL, 'Cash On Delivery', 'Cash On Delivery', NULL, 'Usd', 12.00, NULL, 'EOS33089004', '13 November 2023', 'November', '2023', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', 'delivered', '2023-11-13 06:18:52', '2023-11-13 06:20:46'),
+(28, 3, 3, 4, 5, 'User', 'isrwabina@addu.edu.ph', '09268827283', 'Villa Patricia, Mankilam', '8100', NULL, 'card_1OCBvWJyMbg1UYGznE0DP0Sa', 'Stripe', 'txn_3OCBvYJyMbg1UYGz0vR86p4A', 'usd', 2794.00, '6552d4bf955cf', 'EOS94756003', '14 November 2023', 'November', '2023', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', 'pending', '2023-11-13 18:00:35', NULL),
+(29, 3, 3, 4, 5, 'User', 'isrwabina@addu.edu.ph', '09268827283', 'Villa Patricia, Mankilam', '8100', NULL, 'card_1OCBvXJyMbg1UYGz1jOcold5', 'Stripe', 'txn_3OCBwfJyMbg1UYGz1zJ56puQ', 'usd', 2794.00, '6552d503a82d2', 'EOS22613635', '14 November 2023', 'November', '2023', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', 'pending', '2023-11-13 18:01:41', NULL),
+(30, 3, 3, 4, 5, 'User', 'isrwabina@addu.edu.ph', '09268827283', 'Villa Patricia, Mankilam', '8100', NULL, 'Cash On Delivery', 'Cash On Delivery', NULL, 'Usd', 2794.00, NULL, 'EOS44098790', '14 November 2023', 'November', '2023', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', 'pending', '2023-11-13 18:03:00', NULL),
+(31, 3, 3, 4, 5, 'User', 'isrwabina@addu.edu.ph', '09268827283', 'Villa Patricia, Mankilam', '8100', NULL, 'Cash On Delivery', 'Cash On Delivery', NULL, 'Usd', 2794.00, NULL, 'EOS81252287', '14 November 2023', 'November', '2023', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', 'processing', '2023-11-13 18:04:56', '2023-11-13 18:10:50');
 
 -- --------------------------------------------------------
 
@@ -369,7 +424,8 @@ INSERT INTO `order_items` (`id`, `order_id`, `product_id`, `vendor_id`, `color`,
 (34, 23, 2, NULL, 'Red', '5', '1', 4500.00, '2023-10-18 17:47:40', NULL),
 (35, 24, 2, NULL, 'Red', '5', '1', 4500.00, '2023-10-24 18:54:47', NULL),
 (36, 25, 2, NULL, 'Red', '5', '2', 4500.00, '2023-10-24 18:56:12', NULL),
-(37, 26, 1, '2', 'white', '7', '1', 5200.00, '2023-10-30 01:26:49', NULL);
+(37, 26, 1, '2', 'white', '7', '1', 5200.00, '2023-10-30 01:26:49', NULL),
+(38, 27, 10, '2', 'Red', 'Small', '1', 12.00, '2023-11-13 06:18:57', NULL);
 
 -- --------------------------------------------------------
 
@@ -441,13 +497,13 @@ CREATE TABLE `products` (
 
 INSERT INTO `products` (`id`, `brand_id`, `category_id`, `subcategory_id`, `vendor_id`, `product_name`, `product_slug`, `product_code`, `product_qty`, `product_tags`, `product_size`, `product_color`, `selling_price`, `discount_price`, `short_descp`, `long_descp`, `product_thumbnail`, `hot_deals`, `featured`, `special_offer`, `special_deals`, `status`, `created_at`, `updated_at`) VALUES
 (1, 3, 1, 6, '2', 'Night Maroon', 'night-maroon', '1111', '1', 'new product, top product', '7, 7.5, 8, 8.5, 9, 9.5, 10, 10.5, 11, 12, 13', 'white', '5200', NULL, 'something something short description...........................', '<p>Hello, World!</p>', 'upload/products/thumbnail/1772461123369972.jpg', 1, NULL, NULL, NULL, 1, '2023-07-26 18:04:48', '2023-07-26 18:04:48'),
-(2, 3, 1, 2, NULL, 'Sundial', 'sundial', '1212', '1', 'new product, top product', '5, 5.5, 6, 6.5, 7, 7.5, 8, 8.5, 9, 9.5, 10', 'Red', '4995', '4500', 'adasdasdasd', '<p>adasdwqedasdqwdasdwqdasdwqdasdw</p>', 'upload/products/thumbnail/1772461075189319.webp', NULL, 1, 1, NULL, 1, '2023-07-26 18:04:43', '2023-07-26 18:04:43'),
+(2, 3, 1, 2, NULL, 'Sundial', 'sundial', '1212', '1', 'new product, top product', '5, 5.5, 6, 6.5, 7, 7.5, 8, 8.5, 9, 9.5, 10', 'Red', '4995.45', '4500.45', 'adasdasdasd', '<p>adasdwqedasdqwdasdwqdasdwqdasdw</p>', 'upload/products/thumbnail/1772461075189319.webp', NULL, 1, 1, NULL, 1, '2023-11-15 02:23:55', '2023-11-15 02:23:55'),
 (3, 3, 2, 4, '16', 'Ivan', 'ivan', '1212', '1', 'shoe,hello', NULL, NULL, '52000', '4955', 'sdfoiasdiofnoiwaemfasdf', '<p>paodmspojwqepojapsdkopwepoaisdopqopweiaopsidopqwieopisapdoiopwiqeqweasd</p>', 'upload/products/thumbnail/1771941660903663.jpg', 1, NULL, NULL, NULL, 1, '2023-07-26 18:04:32', '2023-07-26 18:04:32'),
 (6, 2, 1, 1, NULL, 'testing1', 'testing1', '1234', '1', 'new product', NULL, 'Red, Blue', '1234', NULL, 'testing description', '<p>Hello, World!</p>', 'upload/products/thumbnail/1772537083769781.png', 1, NULL, NULL, 1, 1, '2023-07-26 18:04:27', '2023-07-26 18:04:27'),
 (7, 2, 1, 2, NULL, 'fashion testing', 'fashion-testing', '123', '1', 'new product, top product', 'Small, Medium, Large', 'Red, Blue, Black', '123', '12', 'asdwq', '<p>Hello, World!</p>', 'upload/products/thumbnail/1772668930651699.png', NULL, 1, 1, NULL, 1, '2023-07-28 04:53:50', NULL),
 (8, 2, 3, 11, NULL, 'appliance testing', 'appliance-testing', '231', '1', 'new product, top product', 'Small, Medium, Large', 'Red, Blue, Black', '123', NULL, 'asdqwdasdwqe', '<p>Hello, World!</p>', 'upload/products/thumbnail/1772669452181808.jpg', NULL, 1, 1, NULL, 1, '2023-07-28 05:02:08', NULL),
 (9, 2, 2, 12, '16', 'Hot Deals testing', 'hot-deals-testing', '1', '1', 'new product, top product', 'Small, Medium, Large', 'Red, Blue, Black', '123', '12', 'asdasd', '<p>Hello, World!</p>', 'upload/products/thumbnail/1772673501968751.png', 1, NULL, NULL, 1, 1, '2023-07-28 06:06:30', NULL),
-(10, 2, 5, 8, '2', 'heyyoooo', 'heyyoooo', '123', '1', 'new product, top product', 'Small, Medium, Large', 'Red, Blue, Black', '1234213', '12', 'asdwqasd', '<p>Hello, World!</p>', 'upload/products/thumbnail/1772730703998558.png', 1, 1, 1, 1, 1, '2023-07-28 21:15:43', NULL),
+(10, 2, 5, 8, '2', 'heyyoooo', 'heyyoooo', '123', '0', 'new product, top product', 'Small, Medium, Large', 'Red, Blue, Black', '1234213', '12', 'asdwqasd', '<p>Hello, World!</p>', 'upload/products/thumbnail/1772730703998558.png', 1, 1, 1, 1, 1, '2023-07-28 21:15:43', '2023-11-13 06:20:46'),
 (11, 2, 1, 6, '2', 'something shoeeess', 'something-shoeeess', '12313', '0', 'new product, top product', '11,12,13', 'Red, Blue, Black', '12', '2', 'asdwqasdqwdasd', '<p>Hello, World!</p>', 'upload/products/thumbnail/1772730755261322.png', 1, 1, 1, 1, 1, '2023-08-07 03:06:12', '2023-08-07 03:06:12'),
 (12, 2, 2, 12, NULL, 'Christian Prado', 'christian-prado', '123', '2', 'new product, top product', '11,12', 'Red, Blue, Black', '123', '123', 'kjasdoiansdoinoiqwe', '<p>Hello, World!</p>', 'upload/products/thumbnail/1774465476352460.jpg', 1, NULL, NULL, NULL, 0, '2023-08-17 00:49:11', '2023-08-23 17:40:31');
 
@@ -540,7 +596,7 @@ CREATE TABLE `sliders` (
 --
 
 INSERT INTO `sliders` (`id`, `slider_title`, `short_title`, `slider_image`, `created_at`, `updated_at`) VALUES
-(1, 'test', 'testing', 'upload/slider/1772458053149054.png', NULL, '2023-07-25 21:02:02'),
+(1, 'test', 'testing', 'upload/slider/1782587021507260.jpg', NULL, '2023-11-14 16:17:39'),
 (2, 'test 2', 'testing 2', 'upload/slider/1772311775867374.png', NULL, NULL);
 
 -- --------------------------------------------------------
@@ -606,13 +662,13 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `username`, `email`, `email_verified_at`, `password`, `photo`, `phone`, `address`, `vendor_join`, `vendor_short_info`, `role`, `status`, `last_seen`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Admin', 'admin', 'admin@gmail.com', NULL, '$2y$10$9TWAk7kJy9mIMiPOnPJQwuJwqMKEUvgvN5DjDOLz8EDsCSYyDVTji', NULL, NULL, NULL, NULL, NULL, 'admin', 'active', '2023-11-01 08:27:55', NULL, NULL, '2023-11-01 00:27:55'),
+(1, 'Admin', 'admin', 'admin@gmail.com', NULL, '$2y$10$9TWAk7kJy9mIMiPOnPJQwuJwqMKEUvgvN5DjDOLz8EDsCSYyDVTji', NULL, NULL, NULL, NULL, NULL, 'admin', 'active', '2023-11-18 04:26:23', NULL, NULL, '2023-11-17 20:26:23'),
 (2, 'Nest Food.,Ltd', 'vendor', 'vendor@gmail.com', NULL, '$2y$10$PyOzt65.aX4LMLGUvz/5k.tV4C9SHFV3XZsOYPL2yIHR7ZV94hTLG', '202307130242vendor-15.png', '540-025-124553', '5171 W Campbell Ave undefined, Utah 53127 United States', '2023', 'Got a smooth, buttery spread in your fridge? Chances are good that it\'s Good Chef. This brand made Lionto\'s list of the most popular grocery brands across the country.', 'vendor', 'active', '2023-11-01 08:28:18', NULL, NULL, '2023-11-01 00:28:18'),
-(3, 'User', 'user', 'user@gmail.com', NULL, '$2y$10$6LuePCajUVQ/KqNz761s/.X29FfsE.fy80EEgD3Hr1p4MmLGwVW5e', '202307150419cat-3.png', '09268827283', NULL, NULL, NULL, 'user', 'active', '2023-11-01 08:24:26', NULL, NULL, '2023-11-01 00:24:26'),
+(3, 'User', 'user', 'user@gmail.com', NULL, '$2y$10$6LuePCajUVQ/KqNz761s/.X29FfsE.fy80EEgD3Hr1p4MmLGwVW5e', '202307150419cat-3.png', '09268827283', NULL, NULL, NULL, 'user', 'active', '2023-11-15 10:57:40', NULL, NULL, '2023-11-15 02:57:40'),
 (15, 'Walton', 'walton', 'walton@gmail.com', NULL, '$2y$10$taOSnwF2xvEOOU4m0jgU3OAhUomxZAqWyFPPDu0asbK53AiZXNAYi', NULL, '0926882', NULL, '2022', NULL, 'vendor', 'active', '', NULL, NULL, '2023-08-07 01:25:38'),
 (16, 'Sonny', 'sonny', 'sonny@gmail.com', NULL, '$2y$10$8ssYS3a5wuSRWDiiiFIkXOsU0NSTCXowdV4FFnOOIirq72YuGs0iG', NULL, '092648', NULL, '2022', NULL, 'vendor', 'active', '', NULL, NULL, '2023-07-18 02:23:47'),
 (17, 'Expert Fasion', 'expert', 'expert@gmail.com', NULL, '$2y$10$4G2W8t2BLbvrakZgJk8W/e54VSjX8eiSbjuDHaT/zyDpumgaCbBDm', NULL, '013564', NULL, '2022', NULL, 'vendor', 'active', '', NULL, NULL, '2023-07-28 18:56:16'),
-(18, 'ivan', NULL, 'ivansamwabina@gmail.com', NULL, '$2y$10$b3Qgk0vXpav9n31KyGWV/.4CLZEvd.klYT936MxLmZrVwRQcdinlW', NULL, NULL, NULL, NULL, NULL, 'user', 'active', '2023-11-01 08:26:30', NULL, '2023-08-11 03:05:21', '2023-11-01 00:26:30');
+(18, 'ivan', NULL, 'ivansamwabina@gmail.com', NULL, '$2y$10$b3Qgk0vXpav9n31KyGWV/.4CLZEvd.klYT936MxLmZrVwRQcdinlW', NULL, NULL, NULL, NULL, NULL, 'user', 'active', '2023-11-15 10:57:04', NULL, '2023-08-11 03:05:21', '2023-11-15 02:57:04');
 
 -- --------------------------------------------------------
 
@@ -647,6 +703,18 @@ INSERT INTO `wishlists` (`id`, `user_id`, `product_id`, `created_at`, `updated_a
 -- Indexes for table `banners`
 --
 ALTER TABLE `banners`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `blog_categories`
+--
+ALTER TABLE `blog_categories`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `blog_posts`
+--
+ALTER TABLE `blog_posts`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -779,6 +847,18 @@ ALTER TABLE `banners`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
+-- AUTO_INCREMENT for table `blog_categories`
+--
+ALTER TABLE `blog_categories`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `blog_posts`
+--
+ALTER TABLE `blog_posts`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `brands`
 --
 ALTER TABLE `brands`
@@ -800,7 +880,7 @@ ALTER TABLE `compares`
 -- AUTO_INCREMENT for table `coupons`
 --
 ALTER TABLE `coupons`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -812,7 +892,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT for table `multi_images`
@@ -824,13 +904,13 @@ ALTER TABLE `multi_images`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT for table `order_items`
 --
 ALTER TABLE `order_items`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`

@@ -152,8 +152,8 @@ class CartController extends Controller
             Session::put('coupon', [
                 'coupon_name' => $coupon->coupon_name,
                 'coupon_discount' => $coupon->coupon_discount,
-                'discount_amount' => round(Cart::total() * $coupon->coupon_discount/100),
-                'total_amount' => round(Cart::total() - Cart::total() * $coupon->coupon_discount/100),
+                'discount_amount' => round(Cart::total() * $coupon->coupon_discount/100, 2),
+                'total_amount' => round(Cart::total() - Cart::total() * $coupon->coupon_discount/100, 2),
 
             ]);
         }
@@ -173,8 +173,8 @@ class CartController extends Controller
             Session::put('coupon', [
                 'coupon_name' => $coupon->coupon_name,
                 'coupon_discount' => $coupon->coupon_discount,
-                'discount_amount' => round(Cart::total() * $coupon->coupon_discount/100),
-                'total_amount' => round(Cart::total() - Cart::total() * $coupon->coupon_discount/100),
+                'discount_amount' => round(Cart::total() * $coupon->coupon_discount/100, 2),
+                'total_amount' => round(Cart::total() - Cart::total() * $coupon->coupon_discount/100, 2),
 
             ]);
         }
@@ -195,8 +195,8 @@ class CartController extends Controller
             Session::put('coupon', [
                 'coupon_name' => $coupon->coupon_name,
                 'coupon_discount' => $coupon->coupon_discount,
-                'discount_amount' => round(Cart::total() * $coupon->coupon_discount/100),
-                'total_amount' => round(Cart::total() - Cart::total() * $coupon->coupon_discount/100),
+                'discount_amount' => round(Cart::total() * $coupon->coupon_discount/100, 2),
+                'total_amount' => round(Cart::total() - Cart::total() * $coupon->coupon_discount/100, 2),
             ]);
         }
 

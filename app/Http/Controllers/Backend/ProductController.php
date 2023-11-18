@@ -247,4 +247,8 @@ class ProductController extends Controller
         $products = Product::latest()->get();
         return view('backend.product.product_stock', compact('products'));
     } // End Method
+
+    public function StockIn(){
+        return view('backend.product.stock_in');
+    } // End Method
 }
