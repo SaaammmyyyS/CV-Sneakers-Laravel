@@ -106,7 +106,7 @@
                             </tr>
                             <tr>
                                 <th>Order Amount:</th>
-                                <th>{{$order->amount}}</th>
+                                <th>₱ {{round($order->amount, 2)}}</th>
                             </tr>
                             <tr>
                                 <th>Order Status:</th>
@@ -154,9 +154,6 @@
                                 <td class="col-md-1">
                                     <label>Size</label>
                                 </td>
-                                <td class="col-md-1">
-                                    <label>Quantity</label>
-                                </td>
                                 <td class="col-md-3">
                                     <label>Price</label>
                                 </td>
@@ -203,12 +200,8 @@
                                     <label>{{$item->size}}</label>
                                 </td>
                                 @endif
-
-                                <td class="col-md-1">
-                                    <label>{{$item->qty}}</label>
-                                </td>
                                 <td class="col-md-3">
-                                    <label>{{$item->price}} <br> Total = {{$item->price * $item->qty}}</label>
+                                    <label>₱ {{round($item->price, 2)}}</label>
                                 </td>
                             </tr>
                             @endforeach

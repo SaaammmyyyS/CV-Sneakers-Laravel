@@ -5,11 +5,12 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use App\Models\Brand;
 use App\Models\Category;
-use App\Models\Inventory;
 use App\Models\MultiImage;
 use App\Models\Order;
 use App\Models\OrderItem;
 use App\Models\Product;
+use App\Models\ProductItem;
+use App\Models\Records;
 use App\Models\SubCategory;
 use App\Models\User;
 use Carbon\Carbon;
@@ -259,28 +260,53 @@ class ProductController extends Controller
     } // End Method
 
     public function AddStock(Request $request){
-        $product = $request->product_id;
+        $product_id = $request->product_id;
+        $product_data = Product::findOrFail($product_id);
+        if ($request->vendor_id == NULL) {
+            $owner = 0;
+        }
+        else {
+            $owner = $request->vendor_id;
+        }
 
-        $qty = Product::findOrFail($product)->product_qty + $request->product_qty;
-        $product_data = Product::findOrFail($product);
-        $final_quantity = $product_data[$request->product_size] + $request->product_qty;
 
 
-
-        Product::findOrFail($product)->update([
-            "product_qty" => $qty,
-            $request->product_size => $final_quantity,
-            "stock_in_date" => Carbon::now(),
+        Product::findOrFail($product_id)->update([
+            "product_qty" => Product::findOrFail($product_id)->product_qty + $request->product_qty,
         ]);
 
-        Inventory::insert([
+        for ($i = 1; $i <= $request->product_qty; $i++) {
+            if ($request->price == NULL) {
+                ProductItem::insert([
+                    "product_id" => $product_id,
+                    "serial_id" => $product_data->product_name.mt_rand(10000000, 99999999),
+                    "size" => $request->product_size,
+                    "owner" => $owner,
+                    "price" => $product_data->selling_price,
+                    "created_at" => Carbon::now(),
+                ]);
+            }
+            else {
+                ProductItem::insert([
+                    "product_id" => $product_id,
+                    "serial_id" => $product_data->product_name.mt_rand(10000000, 99999999),
+                    "size" => $request->product_qty,
+                    "owner" => $owner,
+                    "price" => $product_data->selling_price,
+                    "created_at" => Carbon::now(),
+                ]);
+            }
+        }
+
+        Records::insert([
             'admin_id' => Auth::id(),
-            'product_id' => $product,
-            'quantity' => $request->product_qty,
-            'price' => $request->selling_price,
+            'product_name' => $product_data->product_name,
+            'qty' => $request->product_qty,
+            'product_id' => $product_id,
+            'price' => $product_data->selling_price,
             'total_price' => $product_data->selling_price * $request->product_qty,
             'type' => "stock in",
-            'stock_in_date' => Carbon::now(),
+            'stock_in_date' => Carbon::now()->format('d/m/Y'),
         ]);
 
         $notification = array(
@@ -292,12 +318,12 @@ class ProductController extends Controller
     }
 
     public function StockInHistory(){
-        $products = Inventory::where('type', 'stock in')->orderBy('id', 'DESC')->get();
+        $products = Records::where('type', 'stock in')->orderBy('id', 'DESC')->get();
         return view('backend.product.stock_in_history', compact('products'));
     } // End Method
 
     public function StockOutHistory(){
-        $orders = Inventory::where('type', 'stock out')->orderBy('id', 'DESC')->get();
+        $orders = Records::where('type', 'stock out')->orderBy('id', 'DESC')->get();
         return view('backend.product.stock_out_history', compact('orders'));
     } // End Method
 

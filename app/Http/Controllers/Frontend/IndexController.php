@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\MultiImage;
 use App\Models\Product;
+use App\Models\ProductItem;
 use App\Models\SubCategory;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -39,19 +40,14 @@ class IndexController extends Controller
 
 
     public function ProductDetails($id, $slug){
+        $product_item = ProductItem::where('product_id', $id)->where('status', 'available')->distinct()->get(['size']);
         $product = Product::findOrFail($id);
-
-        $color = $product->product_color;
-        $product_color = explode(',', $color);
-
-        $size = $product->product_size;
-        $product_size = explode(',', $size);
 
         $multiImage = MultiImage::where('product_id', $id)->get();
 
         $cat_id = $product->category_id;
         $relatedProduct = Product::where('category_id', $cat_id)->where('id', '!=', $id)->orderBy('id', 'DESC')->limit(4)->get();
-        return view('frontend.product.product_details', compact('product', 'product_color', 'product_size', 'multiImage', 'cat_id', 'relatedProduct'));
+        return view('frontend.product.product_details', compact('product', 'multiImage', 'cat_id', 'relatedProduct', 'product_item'));
     } // End Method
 
 

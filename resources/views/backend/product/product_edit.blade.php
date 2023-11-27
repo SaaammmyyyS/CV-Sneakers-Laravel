@@ -37,16 +37,16 @@
                         <label for="inputProductTitle" class="form-label">Product Name</label>
                         <input type="text" name="product_name" class="form-control" id="inputProductTitle" value="{{$products->product_name}}">
                     </div>
+                    <div class="mb-3">
+                        <label for="inputProductTitle" class="form-label">Product Size</label>
+                        <input type="text" name="product_size" class="form-control" value="{{$products->product_size}}" placeholder="Enter product size">
+                    </div>
 
                     <div class="mb-3">
                         <label for="inputProductTitle" class="form-label">Product Tags</label>
                         <input type="text" name="product_tags" class="form-control visually-hidden" data-role="tagsinput" value="{{$products->product_tags}}">
                     </div>
 
-                    <div class="mb-3">
-                        <label for="inputProductTitle" class="form-label">Product Size</label>
-                        <input type="text" name="product_size" class="form-control visually-hidden" data-role="tagsinput" value="{{$products->product_size}}">
-                    </div>
 
                     <div class="mb-3">
                         <label for="inputProductTitle" class="form-label">Product Color</label>

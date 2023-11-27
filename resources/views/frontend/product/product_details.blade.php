@@ -101,9 +101,8 @@
                                 <select class="form-control unicase-form-control" name="" id="dsize">
                                     <option selected="" disabled="">--Choose Size--</option>
 
-                                    @foreach ($product_size as $size)
-                                    <option value="{{ $size }}">{{ ucwords($size) }}</option>
-
+                                    @foreach ($product_item as $item)
+                                        <option value="{{ $item->size }}">{{ $item->size }}</option>
                                     @endforeach
 
                                 </select>
@@ -111,24 +110,7 @@
 
                             @endif
 
-                            @if ($product->product_color == NULL)
 
-                            @else
-
-                            <div class="attr-detail attr-size mb-30">
-                                <strong class="mr-10" style="width:50px; ">Color: </strong>
-                                <select class="form-control unicase-form-control" name="" id="dcolor">
-                                    <option selected="" disabled="">--Choose Color--</option>
-
-                                    @foreach ($product_color as $color)
-                                    <option value="{{ $color }}">{{ ucwords($color) }}</option>
-
-                                    @endforeach
-
-                                </select>
-                            </div>
-
-                            @endif
 
 
                             <div class="detail-extralink mb-50">

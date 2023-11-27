@@ -101,8 +101,8 @@
 <div class="col-lg-5">
 <div class="border p-40 cart-totals ml-30 mb-50">
 <div class="d-flex align-items-end justify-content-between mb-30">
-<h4>Your Order</h4>
-<h6 class="text-muted">Subtotal</h6>
+    <h4>Your Order</h4>
+    <h6 class="text-muted">Subtotal</h6>
 </div>
 <div class="divider-2 mb-30"></div>
 <div class="table-responsive order_table checkout">
@@ -125,7 +125,7 @@
                 <h6 class="text-muted pl-20 pr-20">x {{$item->qty}}</h6>
             </td>
             <td>
-                <h4 class="text-brand">${{$item->price}}</h4>
+                <h4 class="text-brand">${{ number_format((float)$item->price, 2, '.', '')}}</h4>
             </td>
         </tr>
 

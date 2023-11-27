@@ -44,29 +44,24 @@
 
                                 <div class="row mb-3">
                                     <div class="col-sm-3">
-                                        <h6 class="mb-0">Product Name</h6>
+                                        <h6 class="mb-0">Size</h6>
                                     </div>
                                     <div class="form-group col-sm-9 text-secondary">
-                                        <select name="product_size" class="form-select mb-3" aria-label="Default select example">
-                                            <option selected="">Open this select menu</option>
-                                            <option value="size_5">5</option>
-                                            <option value="size_5_5">5.5</option>
-                                            <option value="size_6">6</option>
-                                            <option value="size_6_5">6.5</option>
-                                            <option value="size_7">7</option>
-                                            <option value="size_7_5">7.5</option>
-                                            <option value="size_8">8</option>
-                                            <option value="size_8_5">9.5</option>
-                                            <option value="size_9">9</option>
-                                            <option value="size_9_5">9.5</option>
-                                            <option value="size_10">10</option>
-                                            <option value="size_10_5">10.5</option>
-                                            <option value="size_11">11</option>
-                                            <option value="size_11_5">11.5</option>
-                                            <option value="size_12">12</option>
-                                            <option value="size_12_5">12.5</option>
-                                            <option value="size_13">13</option>
-                                            <option value="size_14">14</option>
+                                        <input type="text" name="product_size" class="form-control" placeholder="0">
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <div class="col-sm-3">
+                                        <h6 class="mb-0">Select Vendor</h6>
+                                    </div>
+                                    <div class="form-group col-sm-9 text-secondary">
+                                        <select name="vendor_id" class="form-select" id="inputCollection">
+                                            <option></option>
+                                            @foreach ($activeVendor as $item)
+
+                                            <option value="{{$item->id }}">{{$item->name}}</option>
+                                            @endforeach
                                         </select>
                                     </div>
                                 </div>
@@ -80,10 +75,19 @@
                                     </div>
                                 </div>
 
+                                <div class="row mb-3">
+                                    <div class="col-sm-3">
+                                        <h6 class="mb-0">Price</h6>
+                                    </div>
+                                    <div class="form-group col-sm-9 text-secondary">
+                                        <input type="text" value name="price" class="form-control" id="productPrice" placeholder="0">
+                                    </div>
+                                </div>
+
                                 <div class="row">
                                     <div class="col-sm-3"></div>
                                     <div class="col-sm-9 text-secondary">
-                                        <input type="submit" class="btn btn-primary px-4" value="Save Changes" />
+                                        <input type="submit" class="btn btn-primary px-4" value="Submit" />
                                     </div>
                                 </div>
                             </div>

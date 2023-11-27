@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Mail\OrderMail;
 use App\Models\Order;
 use App\Models\OrderItem;
+use App\Models\ProductItem;
 use Carbon\Carbon;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Support\Facades\Session;
@@ -155,16 +156,17 @@ class StripeController extends Controller
 
         $carts = Cart::content();
         foreach ($carts as $cart) {
-            OrderItem::insert([
-                'order_id' => $order_id,
-                'product_id' => $cart->id,
-                'vendor_id' => $cart->options->vendor,
-                'color' => $cart->options->color,
-                'size' => $cart->options->size,
-                'qty' => $cart->qty,
-                'price' => $cart->price,
-                'created_at' => Carbon::now(),
-            ]);
+            for ($i=0; $i < $cart->qty; $i++) {
+                OrderItem::insert([
+                    'order_id' => $order_id,
+                    'product_id' => $cart->id,
+                    'vendor_id' => $cart->options->vendor,
+                    'color' => $cart->options->color,
+                    'size' => $cart->options->size,
+                    'price' => $cart->price,
+                    'created_at' => Carbon::now(),
+                ]);
+            }
         } // End Foreach
 
 

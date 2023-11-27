@@ -41,9 +41,12 @@
                         <tr>
                             <td>{{$key+1}}</td>
                             <td>{{$item->stock_in_date}}</td>
-                            <td>{{$item->admin_id}}</td>
-                            <td>{{$item['product']['product_name']}}</td>
-                            <td>{{$item->quantity}}</td>
+                            @php
+                                $admin = App\Models\User::findOrFail($item->admin_id);
+                            @endphp
+                            <td>{{$admin->name}}</td>
+                            <td>{{$item->product_name}}</td>
+                            <td>{{$item->qty}}</td>
                             <td>{{$item->type}}</td>
                         </tr>
 
