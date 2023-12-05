@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Delivery;
 use App\Models\Order;
 use App\Models\OrderItem;
 use App\Models\Product;
@@ -47,6 +48,8 @@ class OrderController extends Controller
     public function PendingToConfirm($order_id){
         $orderItems = OrderItem::where('order_id', $order_id)->get();
 
+
+        // Check if stock is available
         foreach ($orderItems as $item){
             $available_products = ProductItem::where('product_id', $item->product_id)->where('status', '=', 'available')->where('size', '=', $item->size)->first();
             if ($available_products == null) {
@@ -60,15 +63,24 @@ class OrderController extends Controller
 
         foreach ($orderItems as $item) {
             $available_products = ProductItem::where('product_id', $item->product_id)->where('status', '=', 'available')->where('size', '=', $item->size)->first();
+            $product = Product::findOrFail($item->product_id);
+
             OrderItem::findOrFail($item->id)->update([
                 'product_item_id' => $available_products->id,
             ]);
+
             ProductItem::findOrFail($available_products->id)->update([
                 'status' => 'sold',
             ]);
+
             Order::findOrFail($order_id)->update([
                 'status' => 'confirm',
             ]);
+
+            Product::findOrFail($item->product_id)->update([
+                'product_qty' =>  $product->product_qty - 1,
+            ]);
+
         }
         $notification = array(
             'message' => 'Order Confirm Successfully',
@@ -79,8 +91,20 @@ class OrderController extends Controller
 
     } // End Method
 
-    public function ConfirmToProcessing($order_id){
+    public function ConfirmToProcessing(Request $request){
+        $order_id = $request->order_id;
         Order::findOrFail($order_id)->update(['status' => 'processing']);
+
+        Delivery::insert([
+            'order_id' => $order_id,
+            'contact' => $request->contact,
+            'recipient_name' => $request->recipient_name,
+            'courier_company' => $request->courier_company,
+            'delivery_cost' => $request->delivery_cost,
+            'status' => 'processing',
+            'notes' => $request->notes,
+            'created_at' => Carbon::now(),
+        ]);
 
         $notification = array(
             'message' => 'Order Processing Successfully',
@@ -92,7 +116,18 @@ class OrderController extends Controller
 
     public function ProcessingToDeliver($order_id){
         $product = OrderItem::where('order_id', $order_id)->get();
+        // foreach($product as $item){
+        //     Product::where('id',$item->product_id)->update([
+        //         'product_qty' => DB::raw('product_qty-'.$item->qty)
+        //     ]);
+        // }
         $order = Order::findOrFail($order_id);
+
+        $delivery_data = Delivery::where('order_id', $order_id)->first();
+        Delivery::findOrFail($delivery_data->id)->update([
+            'status' => 'delivered',
+        ]);
+
 
         Records::insert([
             "admin_id" => Auth::id(),
@@ -102,12 +137,6 @@ class OrderController extends Controller
             "type" => "stock out",
             "stock_out_date" => Carbon::now()->format('d/m/Y'),
         ]);
-
-        foreach ($product as $item) {
-            Product::where('id', $item->product_id)->update([
-                'product_qty' => DB::raw('product_qty-'.$item->qty)
-            ]);
-        }
 
 
         Order::findOrFail($order_id)->update(['status' => 'delivered']);

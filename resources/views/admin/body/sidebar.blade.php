@@ -19,18 +19,6 @@
                 </div>
                 <div class="menu-title">Dashboard</div>
             </a>
-            <a href="javascript:;" class="has-arrow">
-
-                <div class="parent-icon"><i class='bx bx-home-circle'></i>
-                </div>
-                <div class="menu-title">Brand</div>
-            </a>
-            <ul>
-                <li><a href="{{route('all.brand')}}"><i class="bx bx-right-arrow-alt"></i>All Brand</a></li>
-                <li><a href="{{route('add.brand')}}"><i class="bx bx-right-arrow-alt"></i>Add Brand</a></li>
-
-
-            </ul>
         </li>
         <li>
             <a href="javascript:;" class="has-arrow">
@@ -72,6 +60,101 @@
                 <li> <a href="{{route('admin.delivered.order')}}"><i class="bx bx-right-arrow-alt"></i>Delivered Orders</a></li>
             </ul>
         </li>
+
+        <li>
+            <a href="javascript:;" class="has-arrow">
+                <div class="parent-icon"><i class='bx bx-cart'></i>
+                </div>
+                <div class="menu-title">Return Order</div>
+            </a>
+            <ul>
+                <li> <a href="{{route('return.request')}}"><i class="bx bx-right-arrow-alt"></i>Return Request</a></li>
+                <li> <a href="{{route('complete.return.request')}}"><i class="bx bx-right-arrow-alt"></i>Complete Request</a></li>
+            </ul>
+        </li>
+
+        <li>
+            <a href="javascript:;" class="has-arrow">
+                <div class="parent-icon"><i class='bx bx-cart'></i>
+                </div>
+                <div class="menu-title">Vendor Management</div>
+            </a>
+            <ul>
+                <li> <a href="{{route('inactive.vendor')}}"><i class="bx bx-right-arrow-alt"></i>Inactive Vendor</a></li>
+                <li> <a href="{{route('active.vendor')}}"><i class="bx bx-right-arrow-alt"></i>Active Vendor</a></li>
+            </ul>
+        </li>
+
+        <li>
+            <a href="javascript:;" class="has-arrow">
+                <div class="parent-icon"><i class="bx bx-category"></i>
+                </div>
+                <div class="menu-title">Coupon System</div>
+            </a>
+            <ul>
+                <li> <a href="{{route('all.coupon')}}"><i class="bx bx-right-arrow-alt"></i>All Coupon</a></li>
+                <li> <a href="{{route('add.coupon')}}"><i class="bx bx-right-arrow-alt"></i>Add Coupon</a></li>
+
+            </ul>
+        </li>
+
+        <li>
+            <a href="javascript:;" class="has-arrow">
+                <div class="parent-icon"><i class="bx bx-category"></i>
+                </div>
+                <div class="menu-title">Shipping Area</div>
+            </a>
+            <ul>
+                <li> <a href="{{route('all.division')}}"><i class="bx bx-right-arrow-alt"></i>All Division</a></li>
+                <li> <a href="{{route('all.district')}}"><i class="bx bx-right-arrow-alt"></i>All District</a></li>
+                <li> <a href="{{route('all.state')}}"><i class="bx bx-right-arrow-alt"></i>All State</a></li>
+
+            </ul>
+        </li>
+
+        <li class="menu-label">Frontend</li>
+
+
+        <li>
+            <a href="javascript:;" class="has-arrow">
+                <div class="parent-icon"><i class="bx bx-category"></i>
+                </div>
+                <div class="menu-title">Reports Manage</div>
+            </a>
+            <ul>
+                <li> <a href="{{route('report.view')}}"><i class="bx bx-right-arrow-alt"></i>Report View</a></li>
+                <li> <a href="{{route('order.by.user')}}"><i class="bx bx-right-arrow-alt"></i>Order By User</a></li>
+            </ul>
+
+        </li>
+
+        <li>
+            <a href="javascript:;" class="has-arrow">
+                <div class="parent-icon"><i class="bx bx-category"></i>
+                </div>
+                <div class="menu-title">User Manage</div>
+            </a>
+            <ul>
+                <li> <a href="{{route('all-user')}}"><i class="bx bx-right-arrow-alt"></i>All User</a></li>
+                <li> <a href="{{route('all-vendor')}}"><i class="bx bx-right-arrow-alt"></i>All Vendor</a></li>
+            </ul>
+
+        </li>
+
+        <li>
+            <a href="javascript:;" class="has-arrow">
+
+                <div class="parent-icon"><i class='bx bx-home-circle'></i>
+                </div>
+                <div class="menu-title">Brand</div>
+            </a>
+            <ul>
+                <li><a href="{{route('all.brand')}}"><i class="bx bx-right-arrow-alt"></i>All Brand</a></li>
+                <li><a href="{{route('add.brand')}}"><i class="bx bx-right-arrow-alt"></i>Add Brand</a></li>
+            </ul>
+
+        </li>
+
         <li>
             <a href="javascript:;" class="has-arrow">
                 <div class="parent-icon"><i class="bx bx-category"></i>
@@ -124,83 +207,6 @@
             </ul>
         </li>
 
-        <li>
-            <a href="javascript:;" class="has-arrow">
-                <div class="parent-icon"><i class="bx bx-category"></i>
-                </div>
-                <div class="menu-title">Coupon System</div>
-            </a>
-            <ul>
-                <li> <a href="{{route('all.coupon')}}"><i class="bx bx-right-arrow-alt"></i>All Coupon</a></li>
-                <li> <a href="{{route('add.coupon')}}"><i class="bx bx-right-arrow-alt"></i>Add Coupon</a></li>
-
-            </ul>
-        </li>
-
-        <li>
-            <a href="javascript:;" class="has-arrow">
-                <div class="parent-icon"><i class="bx bx-category"></i>
-                </div>
-                <div class="menu-title">Shipping Area</div>
-            </a>
-            <ul>
-                <li> <a href="{{route('all.division')}}"><i class="bx bx-right-arrow-alt"></i>All Division</a></li>
-                <li> <a href="{{route('all.district')}}"><i class="bx bx-right-arrow-alt"></i>All District</a></li>
-                <li> <a href="{{route('all.state')}}"><i class="bx bx-right-arrow-alt"></i>All State</a></li>
-
-            </ul>
-        </li>
-
-        <li class="menu-label">UI Elements</li>
-        <li>
-            <a href="javascript:;" class="has-arrow">
-                <div class="parent-icon"><i class='bx bx-cart'></i>
-                </div>
-                <div class="menu-title">Vendor Management</div>
-            </a>
-            <ul>
-                <li> <a href="{{route('inactive.vendor')}}"><i class="bx bx-right-arrow-alt"></i>Inactive Vendor</a></li>
-                <li> <a href="{{route('active.vendor')}}"><i class="bx bx-right-arrow-alt"></i>Active Vendor</a></li>
-            </ul>
-        </li>
-
-
-        <li>
-            <a href="javascript:;" class="has-arrow">
-                <div class="parent-icon"><i class='bx bx-cart'></i>
-                </div>
-                <div class="menu-title">Return Order</div>
-            </a>
-            <ul>
-                <li> <a href="{{route('return.request')}}"><i class="bx bx-right-arrow-alt"></i>Return Request</a></li>
-                <li> <a href="{{route('complete.return.request')}}"><i class="bx bx-right-arrow-alt"></i>Complete Request</a></li>
-            </ul>
-        </li>
-        <li>
-            <a href="javascript:;" class="has-arrow">
-                <div class="parent-icon"><i class="bx bx-category"></i>
-                </div>
-                <div class="menu-title">Reports Manage</div>
-            </a>
-            <ul>
-                <li> <a href="{{route('report.view')}}"><i class="bx bx-right-arrow-alt"></i>Report View</a></li>
-                <li> <a href="{{route('order.by.user')}}"><i class="bx bx-right-arrow-alt"></i>Order By User</a></li>
-            </ul>
-
-        </li>
-
-        <li>
-            <a href="javascript:;" class="has-arrow">
-                <div class="parent-icon"><i class="bx bx-category"></i>
-                </div>
-                <div class="menu-title">User Manage</div>
-            </a>
-            <ul>
-                <li> <a href="{{route('all-user')}}"><i class="bx bx-right-arrow-alt"></i>All User</a></li>
-                <li> <a href="{{route('all-vendor')}}"><i class="bx bx-right-arrow-alt"></i>All Vendor</a></li>
-            </ul>
-
-        </li>
         <li>
             <a href="javascript:;" class="has-arrow">
                 <div class="parent-icon"><i class="bx bx-category"></i>

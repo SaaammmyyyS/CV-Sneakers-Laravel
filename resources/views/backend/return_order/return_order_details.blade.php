@@ -6,13 +6,13 @@
 <div class="page-content">
     <!--breadcrumb-->
     <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
-        <div class="breadcrumb-title pe-3">Admin Order Details</div>
+        <div class="breadcrumb-title pe-3">Admin Return Order Details</div>
         <div class="ps-3">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb mb-0 p-0">
                     <li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i></a>
                     </li>
-                    <li class="breadcrumb-item active" aria-current="page">Admin Order Details</li>
+                    <li class="breadcrumb-item active" aria-current="page">Admin Return Order Details</li>
                 </ol>
             </nav>
         </div>
@@ -108,45 +108,32 @@
                                 <th>Order Amount:</th>
                                 <th>₱ {{round($order->amount, 2)}}</th>
                             </tr>
+
                             <tr>
                                 <th>Order Status:</th>
                                 <th><span class="badge bg-danger" style="font-size: 15px;">{{$order->status}}</span></th>
                             </tr>
+
                             <tr>
-                                <th></th>
-                                @if ($order->status == 'pending')
-                                    <th><a href="{{route('pending-confirm', $order->id)}}" id="confirm" class="btn btn-block btn-success">Confirm Order</a></th>
-                                @elseif ($order->status == 'confirm')
-                                    <form method="POST" action="{{route('confirm.processing')}}">
-                                        @csrf
-                                        <input type="hidden" name="order_id" value="{{$order->id}}">
-                                        <tr>
-                                            <th>Contact Number:</th>
-                                            <th><input name="contact" type="text"></th>
-                                        </tr>
-                                        <tr>
-                                            <th>Recipient name:</th>
-                                            <th><input name="recipient_name" type="text" required></th>
-                                        </tr>
-                                        <tr>
-                                            <th>Courier Company:</th>
-                                            <th><input name="courier_company" type="text" required></th>
-                                        </tr>
-                                        <tr>
-                                            <th>Delivery Cost:</th>
-                                            <th><input name="delivery_cost" type="text" required></th>
-                                        </tr>
-                                        <tr>
-                                            <th>Notes:</th>
-                                            <th><textarea name="notes" class="form-control" rows="3"></textarea></th>
-                                        </tr>
-                                        <th></th>
-                                        <th><input type="submit" class="btn btn-block btn-success"></th>
-                                    </form>
-                                @elseif ($order->status == 'processing')
-                                    <th><a href="{{route('processing-deliver', $order->id)}}" id="deliver" class="btn btn-block btn-success">Deliver Order</a></th>
-                                @endif
+                                <th>Return Reason:</th>
+                                <th>{{$order->return_reason}}</th>
                             </tr>
+                            @if ($order->return_order == 1)
+                                <tr>
+                                    <th>Return Schedule:</th>
+                                    <form method="POST" action="{{route('return.request.approve',$order->id)}}">
+                                        @csrf
+                                        <input type="hidden" value="{{$order->id}}" name="order_id">
+                                        <th><input type="date" name="date"></th>
+                                        <th><input type="submit" class="btn btn-rounded btn-primary" value="Approve Request"></th>
+                                    </form>
+                                </tr>
+                            @elseif ($order->return_order == 2)
+                                <tr>
+                                    <th></th>
+                                    <th class="badge rounded-pill bg-info text-dark">Request Accepted</th>
+                                </tr>
+                            @endif
                         </table>
                     </div>
                 </div>
@@ -168,6 +155,9 @@
                                     <label>Product Name</label>
                                 </td>
                                 <td class="col-md-2">
+                                    <label>Vendor Name</label>
+                                </td>
+                                <td class="col-md-2">
                                     <label>Product Code</label>
                                 </td>
                                 <td class="col-md-1">
@@ -186,6 +176,16 @@
                                 <td class="col-md-2">
                                     <label>{{$item->product->product_name}}</label>
                                 </td>
+
+                                @if ($item->vendor_id == null)
+                                <td class="col-md-2">
+                                    <label>Owner</label>
+                                </td>
+                                @else
+                                <td class="col-md-2">
+                                    <label>{{$item->product->vendor->name}}</label>
+                                </td>
+                                @endif
                                 <td class="col-md-2">
                                     <label>{{$item->product->product_code}}</label>
                                 </td>

@@ -110,7 +110,7 @@
                                                 </tr>
                                                 <tr>
                                                     <th>Order Amount:</th>
-                                                    <th>{{$order->amount}}</th>
+                                                    <th>₱ {{ round($order->amount, 2)}}</th>
                                                 </tr>
                                                 <tr>
                                                     <th>Order Status:</th>
@@ -149,13 +149,7 @@
                                 <label>Product Code</label>
                             </td>
                             <td class="col-md-1">
-                                <label>Color</label>
-                            </td>
-                            <td class="col-md-1">
                                 <label>Size</label>
-                            </td>
-                            <td class="col-md-1">
-                                <label>Quantity</label>
                             </td>
                             <td class="col-md-3">
                                 <label>Price</label>
@@ -184,15 +178,6 @@
                             <td class="col-md-2">
                                 <label>{{$item->product->product_code}}</label>
                             </td>
-                            @if ($item->color == null)
-                            <td class="col-md-1">
-                                <label></label>
-                            </td>
-                            @else
-                            <td class="col-md-1">
-                                <label>{{$item->color}}</label>
-                            </td>
-                            @endif
 
                             @if ($item->size == null)
                             <td class="col-md-1">
@@ -204,11 +189,9 @@
                             </td>
                             @endif
 
-                            <td class="col-md-1">
-                                <label>{{$item->qty}}</label>
-                            </td>
+
                             <td class="col-md-3">
-                                <label>{{$item->price}} <br> Total = {{$item->price * $item->qty}}</label>
+                                <label>{{$item->price}}</label>
                             </td>
                         </tr>
                         @endforeach
@@ -218,7 +201,7 @@
         </div>
         <!--  // Start Return Order Option  -->
         @if ($order->return_reason == NULL)
-            @if($order->status == 'pending')
+            @if($order->status == 'delivered')
             <form action="{{ route('return.order',$order->id) }}" method="post">
                 @csrf
 

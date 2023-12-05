@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Order;
+use App\Models\OrderItem;
 use Illuminate\Http\Request;
 
 class ReturnController extends Controller
@@ -13,9 +14,20 @@ class ReturnController extends Controller
         return view('backend.return_order.return_request', compact('orders'));
     } // End Method
 
-    public function ReturnRequestApprove($order_id){
+
+    public function ReturnOrderDetails($order_id){
+        $order = Order::with('division', 'district', 'state', 'user')->where('id', $order_id)->first();
+        $orderItem = OrderItem::with('product')->where('order_id', $order_id)->orderBy('id', 'DESC')->get();
+
+
+        return view('backend.return_order.return_order_details', compact('order', 'orderItem'));
+    } // End Method
+
+    public function ReturnRequestApprove(Request $request, $order_id){
+
         Order::where('id', $order_id)->update([
             'return_order' => 2,
+            'return_date' => $request->date
         ]);
 
         $notification = array(
@@ -23,7 +35,7 @@ class ReturnController extends Controller
             'alert-type' => 'success'
         );
 
-        return redirect()->back()->with($notification);
+        return view('backend.return_order.complete_return_request')->with($notification);
     } // End Method
 
     public function CompleteReturnRequest(){

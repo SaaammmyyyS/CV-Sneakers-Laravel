@@ -129,15 +129,6 @@
                                     <a aria-label="Compare" class="action-btn hover-up" href="shop-compare.html"><i class="fi-rs-shuffle"></i></a>
                                 </div>
                             </div>
-
-                            @if ($product->vendor_id == NULL)
-                            <h6>Sold by <a href="#"><span class="text-danger">Owner</span></a></h6>
-
-                            @else
-                            <h6>Sold by <a href="#"><span class="text-danger">{{$product['vendor']['name']}}</span></a></h6>
-
-
-                            @endif
                             <hr>
 
 
@@ -167,9 +158,6 @@
                                 <a class="nav-link" id="Additional-info-tab" data-bs-toggle="tab" href="#Additional-info">Additional info</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" id="Vendor-info-tab" data-bs-toggle="tab" href="#Vendor-info">Vendor</a>
-                            </li>
-                            <li class="nav-item">
                                 <a class="nav-link" id="Reviews-tab" data-bs-toggle="tab" href="#Reviews">Reviews (3)</a>
                             </li>
                         </ul>
@@ -178,143 +166,6 @@
                                 <div class="">
                                     <p>{!!$product->long_descp!!}</p>
                                 </div>
-                            </div>
-                            <div class="tab-pane fade" id="Additional-info">
-                                <table class="font-md">
-                                    <tbody>
-                                        <tr class="stand-up">
-                                            <th>Stand Up</th>
-                                            <td>
-                                                <p>35″L x 24″W x 37-45″H(front to back wheel)</p>
-                                            </td>
-                                        </tr>
-                                        <tr class="folded-wo-wheels">
-                                            <th>Folded (w/o wheels)</th>
-                                            <td>
-                                                <p>32.5″L x 18.5″W x 16.5″H</p>
-                                            </td>
-                                        </tr>
-                                        <tr class="folded-w-wheels">
-                                            <th>Folded (w/ wheels)</th>
-                                            <td>
-                                                <p>32.5″L x 24″W x 18.5″H</p>
-                                            </td>
-                                        </tr>
-                                        <tr class="door-pass-through">
-                                            <th>Door Pass Through</th>
-                                            <td>
-                                                <p>24</p>
-                                            </td>
-                                        </tr>
-                                        <tr class="frame">
-                                            <th>Frame</th>
-                                            <td>
-                                                <p>Aluminum</p>
-                                            </td>
-                                        </tr>
-                                        <tr class="weight-wo-wheels">
-                                            <th>Weight (w/o wheels)</th>
-                                            <td>
-                                                <p>20 LBS</p>
-                                            </td>
-                                        </tr>
-                                        <tr class="weight-capacity">
-                                            <th>Weight Capacity</th>
-                                            <td>
-                                                <p>60 LBS</p>
-                                            </td>
-                                        </tr>
-                                        <tr class="width">
-                                            <th>Width</th>
-                                            <td>
-                                                <p>24″</p>
-                                            </td>
-                                        </tr>
-                                        <tr class="handle-height-ground-to-handle">
-                                            <th>Handle height (ground to handle)</th>
-                                            <td>
-                                                <p>37-45″</p>
-                                            </td>
-                                        </tr>
-                                        <tr class="wheels">
-                                            <th>Wheels</th>
-                                            <td>
-                                                <p>12″ air / wide track slick tread</p>
-                                            </td>
-                                        </tr>
-                                        <tr class="seat-back-height">
-                                            <th>Seat back height</th>
-                                            <td>
-                                                <p>21.5″</p>
-                                            </td>
-                                        </tr>
-                                        <tr class="head-room-inside-canopy">
-                                            <th>Head room (inside canopy)</th>
-                                            <td>
-                                                <p>25″</p>
-                                            </td>
-                                        </tr>
-                                        <tr class="pa_color">
-                                            <th>Color</th>
-                                            <td>
-                                                <p>Black, Blue, Red, White</p>
-                                            </td>
-                                        </tr>
-                                        <tr class="pa_size">
-                                            <th>Size</th>
-                                            <td>
-                                                <p>M, S</p>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div class="tab-pane fade" id="Vendor-info">
-                                <div class="vendor-logo d-flex mb-30">
-                                    <img src="{{ (!empty($product->vendor->photo) ? url('upload/vendor_images/'.$product->vendor->photo):url('upload/no_image.jpg')) }}" alt="" />
-                                    <div class="vendor-name ml-15">
-
-                                        @if ($product->vendor_id == NULL)
-                                        <h6>
-                                            <a href="vendor-details-2.html">Owner</a>
-                                        </h6>
-                                        @else
-                                        <h6>
-                                            <a href="vendor-details-2.html">{{$product['vendor']['name']}}</a>
-                                        </h6>
-
-                                        @endif
-                                        <div class="product-rate-cover text-end">
-                                            <div class="product-rate d-inline-block">
-                                                <div class="product-rating" style="width: 90%"></div>
-                                            </div>
-                                            <span class="font-small ml-5 text-muted"> (32 reviews)</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <ul class="contact-infor mb-50">
-
-
-                                    @if ($product->vendor_id == NULL)
-                                    <li><img src="{{asset('frontend/assets/imgs/theme/icons/icon-location.svg')}}" alt="" /><strong>Address: </strong> <span>Null</span></li>
-                                    <li><img src="{{asset('frontend/assets/imgs/theme/icons/icon-contact.svg')}}" alt="" /><strong>Contact Seller: </strong><span>Owner</span></li>
-                                    @else
-                                    <li><img src="{{asset('frontend/assets/imgs/theme/icons/icon-location.svg')}}" alt="" /><strong>Address: </strong> <span>{{$product['vendor']['address']}}</span></li>
-                                    <li><img src="{{asset('frontend/assets/imgs/theme/icons/icon-contact.svg')}}" alt="" /><strong>Contact Seller:</strong><span>{{$product['vendor']['phone']}}</span></li>
-
-                                    @endif
-
-
-                                </ul>
-
-
-                                @if ($product->vendor_id == NULL)
-                                <p>Owner Information</p>
-                                @else
-                                <p>{{$product['vendor']['vendor_short_info']}}</p>
-                                @endif
-
-
                             </div>
                             <div class="tab-pane fade" id="Reviews">
                                 <!--Comments-->

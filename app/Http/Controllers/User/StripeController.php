@@ -81,16 +81,17 @@ class StripeController extends Controller
 
         $carts = Cart::content();
         foreach ($carts as $cart) {
-            OrderItem::insert([
-                'order_id' => $order_id,
-                'product_id' => $cart->id,
-                'vendor_id' => $cart->options->vendor,
-                'color' => $cart->options->color,
-                'size' => $cart->options->size,
-                'qty' => $cart->qty,
-                'price' => $cart->price,
-                'created_at' => Carbon::now(),
-            ]);
+            for ($i=0; $i < $cart->qty; $i++) {
+                OrderItem::insert([
+                    'order_id' => $order_id,
+                    'product_id' => $cart->id,
+                    'vendor_id' => $cart->options->vendor,
+                    'color' => $cart->options->color,
+                    'size' => $cart->options->size,
+                    'price' => $cart->price,
+                    'created_at' => Carbon::now(),
+                ]);
+            }
         } // End Foreach
 
 

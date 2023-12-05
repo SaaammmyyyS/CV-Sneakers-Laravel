@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use App\Models\Brand;
 use App\Models\Category;
+use App\Models\Consignment;
 use App\Models\MultiImage;
 use App\Models\Order;
 use App\Models\OrderItem;
@@ -249,7 +250,7 @@ class ProductController extends Controller
 
 
     public function ProductStock(){
-        $products = Product::latest()->get();
+        $products = ProductItem::orderBy('id', 'DESC')->get();
         return view('backend.product.product_stock', compact('products'));
     } // End Method
 
@@ -262,18 +263,17 @@ class ProductController extends Controller
     public function AddStock(Request $request){
         $product_id = $request->product_id;
         $product_data = Product::findOrFail($product_id);
-        if ($request->vendor_id == NULL) {
-            $owner = 0;
-        }
-        else {
-            $owner = $request->vendor_id;
-        }
-
-
 
         Product::findOrFail($product_id)->update([
             "product_qty" => Product::findOrFail($product_id)->product_qty + $request->product_qty,
         ]);
+
+        if($request->vendor_id == null){
+            $owner = 1;
+        }
+        else{
+            $owner = $request->vendor_id;
+        }
 
         for ($i = 1; $i <= $request->product_qty; $i++) {
             if ($request->price == NULL) {
@@ -287,13 +287,29 @@ class ProductController extends Controller
                 ]);
             }
             else {
-                ProductItem::insert([
+                $product_item_id = ProductItem::insertGetId([
                     "product_id" => $product_id,
                     "serial_id" => $product_data->product_name.mt_rand(10000000, 99999999),
                     "size" => $request->product_qty,
                     "owner" => $owner,
                     "price" => $product_data->selling_price,
                     "created_at" => Carbon::now(),
+                ]);
+
+            }
+            if($request->vendor_id == null){
+                $owner = 1;
+            }
+            else{
+                Consignment::insert([
+                    'owner_id' => $owner,
+                    'product_id' => $product_id,
+                    'product_item_id' => $product_item_id,
+                    'consignment_date' => Carbon::now(),
+                    'status' => 'in progress',
+                    'initial_price' => $product_data->selling_price,
+                    'current_price' => $request->price,
+                    'commission_rate' => $request->commission_rate,
                 ]);
             }
         }

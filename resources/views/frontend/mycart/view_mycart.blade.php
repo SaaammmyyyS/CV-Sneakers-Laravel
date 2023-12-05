@@ -30,7 +30,6 @@
                             <th scope="col">Product</th>
                             <th scope="col">Name</th>
                             <th scope="col">Unit Price</th>
-                            <th scope="col">Color</th>
                             <th scope="col">Size</th>
                             <th scope="col">Quantity</th>
                             <th scope="col">Subtotal</th>

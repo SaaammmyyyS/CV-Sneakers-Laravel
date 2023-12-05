@@ -55,12 +55,10 @@
                             @endif
                             <td>{{$item->return_reason}}</td>
                             <td>
-                                <a href="{{route('admin.order.details', $item->id)}}" class="btn btn-info" title="Details"><i class="fa fa-eye"></i></a>
-                                <a href="{{route('return.request.approve', $item->id)}}" id="approve" class="btn btn-danger" title="Approve"><i class="fa-solid fa-person-circle-check"></i></a>
+                                <a href="{{route('admin.return.order.details', $item->id)}}" class="btn btn-info" title="Details"><i class="fa fa-eye"></i></a>
+
                             </td>
-
                         </tr>
-
                         @endforeach
                     </tbody>
                     <tfoot>

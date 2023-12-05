@@ -206,7 +206,7 @@
                 <div class="payment_option">
                     <div class="custome-radio">
                         <input class="form-check-input" value="stripe" required="" type="radio" name="payment_option" id="exampleRadios3" checked="">
-                        <label class="form-check-label" for="exampleRadios3" data-bs-toggle="collapse" data-target="#bankTranfer" aria-controls="bankTranfer">Strip</label>
+                        <label class="form-check-label" for="exampleRadios3" data-bs-toggle="collapse" data-target="#bankTranfer" aria-controls="bankTranfer">Stripe</label>
                     </div>
                     <div class="custome-radio">
                         <input class="form-check-input" value="cash" required="" type="radio" name="payment_option" id="exampleRadios4" checked="">

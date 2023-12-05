@@ -757,12 +757,6 @@
                                 <h6 class="text-body">$${value.price}</h6>
                             </td>
                             <td class="price" data-title="Price">
-                                ${value.options.color == null
-                                    ? `<span>....</span>`
-                                    : `<h6 class="text-body">${value.options.color}</h6>`
-                                }
-                            </td>
-                            <td class="price" data-title="Price">
                                 ${value.options.size == null
                                     ? `<span>....</span>`
                                     : `<h6 class="text-body">${value.options.size}</h6>`

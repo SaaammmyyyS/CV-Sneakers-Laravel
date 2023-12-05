@@ -84,6 +84,15 @@
                                     </div>
                                 </div>
 
+                                <div class="row mb-3">
+                                    <div class="col-sm-3">
+                                        <h6 class="mb-0">Commission Rate (%)</h6>
+                                    </div>
+                                    <div class="form-group col-sm-9 text-secondary">
+                                        <input type="text" value name="commission_rate" class="form-control" id="productPrice" placeholder="0">
+                                    </div>
+                                </div>
+
                                 <div class="row">
                                     <div class="col-sm-3"></div>
                                     <div class="col-sm-9 text-secondary">

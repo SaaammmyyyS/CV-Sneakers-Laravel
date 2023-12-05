@@ -29,11 +29,11 @@
                     <thead>
                         <tr>
                             <th>SL</th>
-                            <th>Image</th>
-                            <th>Product Name</th>
-                            <th>Price</th>
-                            <th>QTY</th>
-                            <th>Discount</th>
+                            <th>Name</th>
+                            <th>Serial ID</th>
+                            <th>size</th>
+                            <th>owner</th>
+                            <th>price</th>
                             <th>Status</th>
                         </tr>
                     </thead>
@@ -41,31 +41,18 @@
                         @foreach ($products as $key => $item)
                         <tr>
                             <td>{{$key+1}}</td>
-                            <td><img src="{{asset($item->product_thumbnail)}}" style="width:70px; height:40px;" alt=""></td>
-                            <td>{{$item->product_name}}</td>
-                            <td>{{$item->selling_price}}</td>
-                            <td>{{$item->product_qty}}</td>
-
-                            <td>
-                                @if ($item->discount_price == NULL)
-                                <span class="badge rounded-pill bg-info">No Discount</span>
-                                {{$item->discount_price}}
-                                @else
-                                @php
-                                    $amount = $item->selling_price - $item->discount_price;
-                                    $discount = ($amount/$item->selling_price) * 100;
-
-                                @endphp
-                                    <span class="badge rounded-pill bg-danger">{{round($discount)}}%</span>
-                                @endif
-                            </td>
+                            <td>{{$item->product->product_name}}</td>
+                            <td>{{$item->serial_id}}</td>
+                            <td>{{$item->size}}</td>
+                            <td>{{$item->owner_name->name}}</td>
+                            <td>{{$item->price}}</td>
 
 
                             <td>
-                                @if ($item->status == 1)
-                                    <span class="badge rounded-pill bg-success">Active</span>
+                                @if ($item->status == 'available')
+                                    <span class="badge rounded-pill bg-success">available</span>
                                 @else
-                                    <span class="badge rounded-pill bg-danger">InActive</span>
+                                    <span class="badge rounded-pill bg-danger">sold</span>
                                 @endif
                             </td>
                         </tr>

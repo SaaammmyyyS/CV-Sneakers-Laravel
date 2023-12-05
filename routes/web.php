@@ -260,8 +260,8 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('admin/confirmed/order', 'AdminConfirmedOrder')->name('admin.confirmed.order');
         Route::get('admin/processing/order', 'AdminProcessingOrder')->name('admin.processing.order');
         Route::get('admin/delivered/order', 'AdminDeliveredOrder')->name('admin.delivered.order');
-        Route::post('/pending/confirm', 'PendingToConfirm')->name('pending-confirm');
-        Route::get('/confirm/processing/{order_id}', 'ConfirmToProcessing')->name('confirm-processing');
+        Route::get('/pending/confirm/{order_id}', 'PendingToConfirm')->name('pending-confirm');
+        Route::post('/confirm/processing', 'ConfirmToProcessing')->name('confirm.processing');
         Route::get('/processing/deliver/{order_id}', 'ProcessingToDeliver')->name('processing-deliver');
         Route::get('/admin/invoice/download/{order_id}', 'AdminInvoiceDownload')->name('admin.invoice.download');
     });
@@ -269,8 +269,9 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     // Return Order All Route
     Route::controller(ReturnController::class)->group(function(){
         Route::get('/return/request', 'ReturnRequest')->name('return.request');
-        Route::get('/return/request/approve/{order_id}', 'ReturnRequestApprove')->name('return.request.approve');
         Route::get('/complete/return/request', 'CompleteReturnRequest')->name('complete.return.request');
+        Route::get('/return/order/details/{order_id}', 'ReturnOrderDetails')->name('admin.return.order.details');
+        Route::post('/return/approve/request/{order_id}', 'ReturnRequestApprove')->name('return.request.approve');
     });
 
     // Report All Route
